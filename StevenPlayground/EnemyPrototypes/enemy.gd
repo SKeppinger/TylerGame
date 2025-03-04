@@ -29,13 +29,13 @@ func _process(delta):
 func hurt(damage):
 	# Process damage
 	current_hp -= damage
-	# Perform hurt action
-	if current_hp > 0 or do_hurt_on_death:
-		hurt_action()
 	# If HP is <= 0, the enemy is dying
 	if current_hp <= 0:
 		current_hp = 0
 		dying = true
+	# Perform hurt action
+	if not dying or do_hurt_on_death:
+		hurt_action()
 
 ## Hurt Action [ABSTRACT]
 # Called every time the enemy is hurt
