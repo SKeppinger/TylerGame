@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cypknusmj5f"]
+
+[ext_resource type="Script" path="res://StevenPlayground/PlayerCombatPrototype/player.gd" id="1_1xyiu"]
+[ext_resource type="Texture2D" uid="uid://baowf50reuqo2" path="res://icon.svg" id="2_73b27"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_1xyiu")
+movement_speed = 500.0
+acceleration = 0.3
+friction = 0.2
+max_hp = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_73b27")
