@@ -5,10 +5,12 @@ extends CharacterBody2D
 @export var acceleration: float # The player's acceleration
 @export var friction: float # The player's friction
 @export var max_hp: float # The player's maximum HP
+@export var equipped_weapon: Weapon # The player's currently equipped weapon
 
 ## CONTROL VARIABLES
 var current_hp = max_hp # The player's current HP
 var attacking = false # Flag for whether the player is attacking
+var attack_cooldown_timer = 0.0 # Timer for the player's attack cooldown
 
 ## FUNCTIONS
 ## Get Move Input
@@ -28,11 +30,28 @@ func get_move_input():
 ## Get Combat Input
 # Receive combat input from the player
 func get_combat_input():
-	pass
+	# If the player inputs a valid attack (i.e. it is off cooldown), then attack
+	if Input.is_action_just_pressed("attack") and not attacking and attack_cooldown_timer <= 0:
+		attack()
+
+## Attack
+# Process the player's attacks
+func attack():
+	attacking = true
+	attack_cooldown_timer = equipped_weapon.cooldown
+
+## Process
+# Handle timers and other internal control
+func _process(delta):
+	# Attack cooldown timer
+	if attack_cooldown_timer > 0:
+		attack_cooldown_timer -= delta
+	if attack_cooldown_timer < 0:
+		attack_cooldown_timer = 0
 
 ## Physics Process
 # Handle the player movement
-func _physics_process(delta):
+func _physics_process(_delta):
 	# If the player is not attacking, process movement normally
 	if not attacking:
 		var direction = get_move_input()
