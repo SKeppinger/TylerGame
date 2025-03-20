@@ -1,7 +1,7 @@
 ## I'll make this description more formal later, but for now I'm going to just write out my plan.
 ## My idea is to have the weapon "spawn" an attack shape wherever it is meant to appear (originating
-## from the player in the case of a melee/ranged attack, or something like a fireball could be spawned
-## at some point away from the player). Then, this script will also give the attack shape its behavior
+## from the attacker in the case of a melee/ranged attack, or something like a fireball could be spawned
+## at some point away from the attacker). Then, this script will also give the attack shape its behavior
 ## (should it flicker like a melee attack? fly like a projectile? maybe it creates a lingering damaging
 ## area?). All of that functionality should be localized to this script.
 
@@ -27,7 +27,7 @@ enum TARGETS {Enemies, Player, Both} # Who the attack hurts
 @export var targets: TARGETS # Indicator for the targets
 @export var attack_damage: float # How much damage the attack deals
 @export var attack_time: float # How long it takes to perform the attack
-@export var attack_cooldown: float # How long before the attack can be used again
+@export var cooldown: float # How long before the attack can be used again
 @export var knockback: float # How much the attack knocks enemies back from the origin
 @export var attack_shape: Area2D # The shape of the attack
 
@@ -35,3 +35,9 @@ enum TARGETS {Enemies, Player, Both} # Who the attack hurts
 @export var projectile_pierces: int # How many targets the projectile can pierce before being destroyed
 @export var linger_time: float # How long the attack lingers
 @export var point_range: float # How far the mouse/point attack can be spawned from the attacker
+
+## FUNCTIONS
+## Attack
+# Execute the weapon's attack (attacker will pass in "self" when calling this function)
+func attack(attacker):
+	pass

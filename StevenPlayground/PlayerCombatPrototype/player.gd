@@ -10,6 +10,7 @@ extends CharacterBody2D
 ## CONTROL VARIABLES
 var current_hp = max_hp # The player's current HP
 var attacking = false # Flag for whether the player is attacking
+var attack_timer = 0.0 # Timer for the player's attack
 var attack_cooldown_timer = 0.0 # Timer for the player's attack cooldown
 
 ## FUNCTIONS
@@ -35,22 +36,14 @@ func get_combat_input():
 		attack()
 
 ## Attack
-# Process the player's attacks
+# Called when the player begins their attack (the attack is actually executed in physics_process)
 func attack():
 	attacking = true
+	attack_timer = equipped_weapon.attack_time
 	attack_cooldown_timer = equipped_weapon.cooldown
 
-## Process
-# Handle timers and other internal control
-func _process(delta):
-	# Attack cooldown timer
-	if attack_cooldown_timer > 0:
-		attack_cooldown_timer -= delta
-	if attack_cooldown_timer < 0:
-		attack_cooldown_timer = 0
-
 ## Physics Process
-# Handle the player movement
+# Handle the physical player actions (like movement and attacks)
 func _physics_process(_delta):
 	# If the player is not attacking, process movement normally
 	if not attacking:
@@ -59,9 +52,27 @@ func _physics_process(_delta):
 			velocity = velocity.lerp(direction.normalized() * movement_speed, acceleration)
 		else:
 			velocity = velocity.lerp(Vector2.ZERO, friction)
-	# Stop movement while attacking
+	# Stop movement while attacking (and fulfill the attack)
 	else:
 		velocity = Vector2.ZERO
+		if attack_timer <= 0:
+			equipped_weapon.attack(self) # Pass in the attacker (i.e. self)
+			attacking = false
 	
 	# Move and slide
 	move_and_slide()
+
+## Process
+# Handle timers and other internal control
+func _process(delta):
+	# Attack timer
+	if attack_timer > 0:
+		attack_timer -= delta
+	if attack_timer < 0:
+		attack_timer = 0
+
+	# Attack cooldown timer
+	if attack_cooldown_timer > 0:
+		attack_cooldown_timer -= delta
+	if attack_cooldown_timer < 0:
+		attack_cooldown_timer = 0
