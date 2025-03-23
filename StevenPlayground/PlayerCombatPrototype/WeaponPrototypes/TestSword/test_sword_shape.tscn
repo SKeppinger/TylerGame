@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bruttpphw8s5f"]
 
-[ext_resource type="Script" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/attack_shape.gd" id="1_ojfjk"]
+[ext_resource type="Script" uid="uid://b1ok7xejfhktb" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/attack_shape.gd" id="1_ojfjk"]
 
 [node name="TestSwordShape" type="Area2D"]
 script = ExtResource("1_ojfjk")

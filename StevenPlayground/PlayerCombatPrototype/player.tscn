@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cypknusmj5f"]
 
-[ext_resource type="Script" path="res://StevenPlayground/PlayerCombatPrototype/player.gd" id="1_1xyiu"]
+[ext_resource type="Script" uid="uid://nbncosk00hx0" path="res://StevenPlayground/PlayerCombatPrototype/player.gd" id="1_1xyiu"]
 [ext_resource type="Texture2D" uid="uid://baowf50reuqo2" path="res://icon.svg" id="2_73b27"]
 [ext_resource type="PackedScene" uid="uid://dacmqo66vc1xu" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/TestSword/test_sword.tscn" id="3_wenti"]
 
