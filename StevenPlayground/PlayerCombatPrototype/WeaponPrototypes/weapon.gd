@@ -11,6 +11,13 @@
 ## is pretty straightforward, but say we want an ability to caused ranged projectiles to pierce more than one 
 ## target? I might choose (will choose) to have an integer "pierces" to which that hypothetical ability can 
 ## externally give a +1 (or however many).
+
+## HOW TO MAKE A WEAPON USING THIS SCRIPT:
+## Duplicate weapon.tscn and attack_shape.tscn into your directory
+## Rename both if you wish
+## Set the exported attributes of the weapon to your desired values
+## Give the attack shape a collision shape; create it as though the attacker is facing to the right
+## Set the weapon's attack shape to your new attack shape
 extends Node2D
 class_name Weapon
 
@@ -59,3 +66,6 @@ func attack(attacker):
 			pass
 		ORIGIN_TYPE.Point:
 			pass
+	# If the attacker is the player, rotate the attack toward the mouse
+	if attacker.is_in_group("player"):
+		atk.look_at(get_global_mouse_position())

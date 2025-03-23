@@ -6,6 +6,7 @@
 script = ExtResource("1_ojfjk")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+rotation = 1.5708
 polygon = PackedVector2Array(-32, 0, 32, 0, 16, -64, -16, -64)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
