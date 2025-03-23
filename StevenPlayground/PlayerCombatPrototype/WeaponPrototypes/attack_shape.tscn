@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://s0cr08jqg7yu"]
+[gd_scene load_steps=2 format=3 uid="uid://s0cr08jqg7yu"]
+
+[ext_resource type="Script" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/attack_shape.gd" id="1_fy1tp"]
 
 [node name="AttackShape" type="Area2D"]
+script = ExtResource("1_fy1tp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

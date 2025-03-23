@@ -29,7 +29,7 @@ enum TARGETS {Enemies, Player, Both} # Who the attack hurts
 @export var attack_time: float # How long it takes to perform the attack
 @export var cooldown: float # How long before the attack can be used again
 @export var knockback: float # How much the attack knocks enemies back from the origin
-@export var attack_shape: Area2D # The shape of the attack
+@export var attack_shape: PackedScene # The shape of the attack
 
 ## SPECIFIC WEAPON ATTRIBUTES
 @export var projectile_pierces: int # How many targets the projectile can pierce before being destroyed
@@ -40,4 +40,22 @@ enum TARGETS {Enemies, Player, Both} # Who the attack hurts
 ## Attack
 # Execute the weapon's attack (attacker will pass in "self" when calling this function)
 func attack(attacker):
-	pass
+	# Instantiate the attack shape
+	var atk = attack_shape.instantiate()
+	# Set its instance variables
+	atk.damage = attack_damage
+	atk.knockback = knockback
+	atk.behavior = behavior
+	atk.targets = targets
+	atk.pierces = projectile_pierces
+	atk.linger_time = linger_time
+	# Spawn the attack
+	get_tree().root.add_child(atk)
+	# Based on the weapon's origin, set the attack's position
+	match origin_type:
+		ORIGIN_TYPE.Attacker:
+			atk.global_position = attacker.global_position
+		ORIGIN_TYPE.Mouse:
+			pass
+		ORIGIN_TYPE.Point:
+			pass

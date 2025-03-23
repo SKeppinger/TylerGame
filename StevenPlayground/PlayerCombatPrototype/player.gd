@@ -33,6 +33,7 @@ func get_move_input():
 func get_combat_input():
 	# If the player inputs a valid attack (i.e. it is off cooldown), then attack
 	if Input.is_action_just_pressed("attack") and not attacking and attack_cooldown_timer <= 0:
+		print("Player attacked")
 		attack()
 
 ## Attack
@@ -58,6 +59,9 @@ func _physics_process(_delta):
 		if attack_timer <= 0:
 			equipped_weapon.attack(self) # Pass in the attacker (i.e. self)
 			attacking = false
+	
+	# Check for attacks
+	get_combat_input()
 	
 	# Move and slide
 	move_and_slide()

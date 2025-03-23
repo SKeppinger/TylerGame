@@ -27,6 +27,7 @@ func _process(delta):
 ## Hurt
 # Called when a damaging object (like an attack or projectile) collides with the enemy.
 func hurt(damage):
+	print("hurt")
 	# Process damage
 	current_hp -= damage
 	# If HP is <= 0, the enemy is dying
