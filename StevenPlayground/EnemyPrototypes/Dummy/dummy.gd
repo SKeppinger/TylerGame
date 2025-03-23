@@ -5,6 +5,6 @@ extends Enemy
 # Register the damage taken to the console, then heal
 func hurt_action():
 	# Print the damage
-	print("Dummy took %d damage" % (max_hp - current_hp))
+	print("Dummy took %f damage" % (max_hp - current_hp))
 	# Heal to maximum HP
 	heal(max_hp)

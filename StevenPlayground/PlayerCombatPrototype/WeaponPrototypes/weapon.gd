@@ -23,7 +23,7 @@ class_name Weapon
 
 ## WEAPON ENUMS
 enum WEAPON_TYPE {Melee, Ranged, Magic} # The type of the weapon (for grouping purposes only)
-enum ORIGIN_TYPE {Attacker, Mouse, Point} # Whether the attack originates from the attacker, the mouse (player), or a point (enemy)
+enum ORIGIN_TYPE {Attacker, Point} # Whether the attack originates from the attacker or a point
 enum BEHAVIOR {Flicker, Projectile, Linger, Custom} # How the attack should behave once it is spawned
 enum TARGETS {Enemies, Player, Both} # Who the attack hurts
 
@@ -40,6 +40,7 @@ enum TARGETS {Enemies, Player, Both} # Who the attack hurts
 
 ## SPECIFIC WEAPON ATTRIBUTES
 @export var projectile_pierces: int # How many targets the projectile can pierce before being destroyed
+@export var projectile_speed: float # How fast the projectile travels
 @export var linger_time: float # How long the attack lingers
 @export var point_range: float # How far the mouse/point attack can be spawned from the attacker
 
@@ -55,6 +56,7 @@ func attack(attacker):
 	atk.behavior = behavior
 	atk.targets = targets
 	atk.pierces = projectile_pierces
+	atk.projectile_speed = projectile_speed
 	atk.linger_time = linger_time
 	# Spawn the attack
 	get_tree().root.add_child(atk)
@@ -62,10 +64,11 @@ func attack(attacker):
 	match origin_type:
 		ORIGIN_TYPE.Attacker:
 			atk.global_position = attacker.global_position
-		ORIGIN_TYPE.Mouse:
-			pass
 		ORIGIN_TYPE.Point:
-			pass
-	# If the attacker is the player, rotate the attack toward the mouse
-	if attacker.is_in_group("player"):
-		atk.look_at(get_global_mouse_position())
+			if attacker.position.distance_to(attacker.target) <= point_range:
+				atk.global_position = attacker.target
+			else:
+				#TODO: Place the attack at distance point_range from the attacker in the direction of the target
+				pass
+	# Rotate the attack toward the target
+	atk.look_at(attacker.target)

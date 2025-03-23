@@ -12,6 +12,7 @@ var current_hp = max_hp # The player's current HP
 var attacking = false # Flag for whether the player is attacking
 var attack_timer = 0.0 # Timer for the player's attack
 var attack_cooldown_timer = 0.0 # Timer for the player's attack cooldown
+var target # Tracks the location of the mouse for attacks (all attackers must have target variable)
 
 ## FUNCTIONS
 ## Get Move Input
@@ -34,6 +35,7 @@ func get_combat_input():
 	# If the player inputs a valid attack (i.e. it is off cooldown), then attack
 	if Input.is_action_just_pressed("attack") and not attacking and attack_cooldown_timer <= 0:
 		print("Player attacked")
+		target = get_global_mouse_position()
 		attack()
 
 ## Attack

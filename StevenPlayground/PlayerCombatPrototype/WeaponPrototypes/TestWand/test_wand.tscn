@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv8bbvbd8nmqe"]
+
+[ext_resource type="Script" uid="uid://dh6s1jhemg0e1" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/weapon.gd" id="1_wton2"]
+[ext_resource type="PackedScene" uid="uid://xci71sjtbkx6" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/TestWand/test_wand_shape.tscn" id="2_w6jak"]
+
+[node name="TestWand" type="Node2D"]
+script = ExtResource("1_wton2")
+weapon_type = 2
+origin_type = 1
+behavior = 2
+attack_damage = 1.0
+attack_time = 0.4
+cooldown = 0.8
+attack_shape = ExtResource("2_w6jak")
+linger_time = 3.0
+point_range = 10000.0

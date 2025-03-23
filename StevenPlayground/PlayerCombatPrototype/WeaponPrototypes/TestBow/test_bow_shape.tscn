@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://csu770yqafsj2"]
+
+[ext_resource type="Script" uid="uid://b1ok7xejfhktb" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/attack_shape.gd" id="1_ulxb2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p07gt"]
+size = Vector2(30, 10)
+
+[node name="TestBowShape" type="Area2D"]
+script = ExtResource("1_ulxb2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(15, 0)
+shape = SubResource("RectangleShape2D_p07gt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
