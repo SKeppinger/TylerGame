@@ -68,7 +68,6 @@ func attack(attacker):
 			if attacker.position.distance_to(attacker.target) <= point_range:
 				atk.global_position = attacker.target
 			else:
-				#TODO: Place the attack at distance point_range from the attacker in the direction of the target
-				pass
+				atk.global_position = attacker.global_position + (attacker.global_position.direction_to(attacker.target) * point_range)
 	# Rotate the attack toward the target
 	atk.look_at(attacker.target)
