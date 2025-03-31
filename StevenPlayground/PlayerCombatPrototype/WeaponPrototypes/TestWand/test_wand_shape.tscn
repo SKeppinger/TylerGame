@@ -6,9 +6,11 @@
 radius = 48.0
 
 [node name="AttackShape" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_t5xi8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r1c87")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

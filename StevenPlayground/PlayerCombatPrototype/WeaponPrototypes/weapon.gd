@@ -35,7 +35,7 @@ enum TARGETS {Enemies, Player, Both} # Who the attack hurts
 @export var attack_damage: float # How much damage the attack deals
 @export var attack_time: float # How long it takes to perform the attack
 @export var cooldown: float # How long before the attack can be used again
-@export var knockback: float # How far the attack knocks enemies back from the origin
+@export var knockback: float # How fast the attack knocks enemies back from the origin
 @export var attack_shape: PackedScene # The shape of the attack
 
 ## SPECIFIC WEAPON ATTRIBUTES
@@ -43,6 +43,7 @@ enum TARGETS {Enemies, Player, Both} # Who the attack hurts
 @export var projectile_speed: float # How fast the projectile travels
 @export var linger_time: float # How long the attack lingers
 @export var point_range: float # How far the mouse/point attack can be spawned from the attacker
+@export var enemy_attacker_range: float # How close an enemy must be to use an attacker-origin (non-projectile) attack (accessed by Equipped Enemy)
 
 ## FUNCTIONS
 ## Attack

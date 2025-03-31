@@ -6,9 +6,11 @@
 size = Vector2(30, 10)
 
 [node name="TestBowShape" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_ulxb2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(15, 0)
 shape = SubResource("RectangleShape2D_p07gt")
 

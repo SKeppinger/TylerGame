@@ -14,11 +14,11 @@ enum ENEMY_STATE {Idle, Aggro, Attacking, Custom}
 @export var knockback_resist = 0.0 # How much the enemy reduces knockback distance (multiplicative)
 @export var do_hurt_on_death = false # A flag for whether the enemy should perform its hurt action if the damage kills it
 @export var aggro_range = 1000.0 # How close the enemy must be to its target to enter the aggro state from the idle state
-@export var invuln_time = 0.25 # How long (in seconds) the enemy is invulnerable and inactive after being hurt (hurt actions still happen)
+@export var invuln_time = 0.5 # How long (in seconds) the enemy is invulnerable and inactive after being hurt (hurt actions still happen)
 
 ## CONTROL VARIABLES
 @onready var current_hp = max_hp # The enemy's current HP
-@onready var target = get_tree().get_first_node_in_group("player") # The enemy's current target
+@onready var target_node = get_tree().get_first_node_in_group("player") # The enemy's current target node
 var state = ENEMY_STATE.Idle # The enemy's current state
 var hurt_timer = 0.0 # A timer to track how long the enemy should be hurting
 var hurting = false # A flag for whether the enemy is invulnerable due to recently being hurt
@@ -62,7 +62,7 @@ func _physics_process(delta):
 # The enemy's idle behavior
 func idle(delta):
 	idle_action(delta)
-	if global_position.distance_to(target.global_position) <= aggro_range:
+	if global_position.distance_to(target_node.global_position) <= aggro_range:
 		state = ENEMY_STATE.Aggro
 
 ## Idle Action [Abstract]
@@ -100,23 +100,28 @@ func custom(_delta):
 ## Hurt
 # Called when a damaging object (like an attack or projectile) collides with the enemy.
 func hurt(damage):
-	# Process damage
-	current_hp -= damage
-	# If HP is <= 0, the enemy is dying
-	if current_hp <= 0:
-		current_hp = 0
-		dying = true
-	# Otherwise, the enemy is hurting
-	else:
-		hurting = true
-	# Perform hurt action
-	if not dying or do_hurt_on_death:
-		hurt_action()
+	# If not invulnerable
+	if not hurting:
+		# Reset to idle state
+		state = ENEMY_STATE.Idle
+		# Process damage
+		current_hp -= damage
+		# If HP is <= 0, the enemy is dying
+		if current_hp <= 0:
+			current_hp = 0
+			dying = true
+		# Otherwise, the enemy is hurting
+		else:
+			hurting = true
+		# Perform hurt action
+		if not dying or do_hurt_on_death:
+			hurt_action()
 
 ## Knockback
 # Called when the enemy is hurt by an attack that knocks it back
-func knockback(distance, origin):
+func knockback(speed, origin):
 	var direction = (global_position - origin).normalized()
+	var distance = speed * invuln_time
 	distance -= distance * knockback_resist
 	velocity = direction * (distance / invuln_time)
 

@@ -5,8 +5,9 @@
 
 [node name="TestSword" type="Node2D"]
 script = ExtResource("1_aeud4")
-attack_damage = 2.0
+attack_damage = 4.5
 attack_time = 0.1
 cooldown = 0.3
-knockback = 30.0
+knockback = 70.0
 attack_shape = ExtResource("2_wl7gk")
+enemy_attacker_range = 96.0
