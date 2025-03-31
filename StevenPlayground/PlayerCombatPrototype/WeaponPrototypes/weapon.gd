@@ -35,7 +35,7 @@ enum TARGETS {Enemies, Player, Both} # Who the attack hurts
 @export var attack_damage: float # How much damage the attack deals
 @export var attack_time: float # How long it takes to perform the attack
 @export var cooldown: float # How long before the attack can be used again
-@export var knockback: float # How much the attack knocks enemies back from the origin
+@export var knockback: float # How far the attack knocks enemies back from the origin
 @export var attack_shape: PackedScene # The shape of the attack
 
 ## SPECIFIC WEAPON ATTRIBUTES
@@ -51,6 +51,7 @@ func attack(attacker):
 	# Instantiate the attack shape
 	var atk = attack_shape.instantiate()
 	# Set its instance variables
+	atk.attacker = attacker
 	atk.damage = attack_damage
 	atk.knockback = knockback
 	atk.behavior = behavior

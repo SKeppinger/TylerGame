@@ -5,6 +5,7 @@ class_name AttackShape
 const flicker_time = 0.1
 
 ## INSTANCE VARIABLES (SET BY WEAPON)
+var attacker # The attacker
 var damage # The attack's damage
 var knockback # The attack's knockback
 var behavior # The attack's behavior (equivalent to Weapon.BEHAVIOR enum)
@@ -54,8 +55,9 @@ func linger(delta):
 	for body in get_overlapping_bodies():
 		if body.is_in_group("enemy") and (targets == Weapon.TARGETS.Enemies or targets == Weapon.TARGETS.Both):
 			body.hurt(damage)
+			body.knockback(knockback, global_position)
 		if body.is_in_group("player") and (targets == Weapon.TARGETS.Player or targets == Weapon.TARGETS.Both):
-			#TODO: Player hurt function
+			#TODO: Player hurt function and knockback
 			pass
 
 ## Custom (ABSTRACT)
@@ -67,11 +69,15 @@ func custom(delta):
 # Deal damage to targets
 func _on_body_entered(body):
 	var hit = false
+	# Don't hit self if the attack shouldn't (mainly for melee attacks enemies make against other enemies)
+	if body == attacker and targets != Weapon.TARGETS.Both:
+		return
 	if body.is_in_group("enemy") and (targets == Weapon.TARGETS.Enemies or targets == Weapon.TARGETS.Both):
 		body.hurt(damage)
+		body.knockback(knockback, global_position)
 		hit = true
 	if body.is_in_group("player") and (targets == Weapon.TARGETS.Player or targets == Weapon.TARGETS.Both):
-		#TODO: Player hurt function
+		#TODO: Player hurt function and knockback
 		hit = true
 	
 	# Manage projectile destruction

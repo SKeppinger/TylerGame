@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cypknusmj5f"]
+[gd_scene load_steps=7 format=3 uid="uid://cypknusmj5f"]
 
 [ext_resource type="Script" uid="uid://nbncosk00hx0" path="res://StevenPlayground/PlayerCombatPrototype/player.gd" id="1_1xyiu"]
 [ext_resource type="Texture2D" uid="uid://baowf50reuqo2" path="res://icon.svg" id="2_73b27"]
@@ -6,13 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://cgr4n63myhiyd" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/TestBow/test_bow.tscn" id="4_kttyy"]
 [ext_resource type="PackedScene" uid="uid://dv8bbvbd8nmqe" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/TestWand/test_wand.tscn" id="5_psdlc"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_psdlc"]
+size = Vector2(64, 64)
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("equipped_weapon") groups=["player"]]
+motion_mode = 1
+safe_margin = 0.001
 script = ExtResource("1_1xyiu")
 movement_speed = 300.0
 acceleration = 0.3
 friction = 0.2
 max_hp = 10.0
-equipped_weapon = NodePath("TestWand")
+equipped_weapon = NodePath("TestSword")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_psdlc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

@@ -6,8 +6,10 @@
 size = Vector2(64, 64)
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+motion_mode = 1
+platform_floor_layers = 0
+safe_margin = 0.001
 script = ExtResource("1_em3cv")
-max_hp = 10.0
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jx7m6")
