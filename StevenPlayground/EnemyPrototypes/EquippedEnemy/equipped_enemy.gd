@@ -61,10 +61,11 @@ func attack(delta):
 	if attack_timer >= equipped_weapon.attack_time:
 		attack_timer = 0.0
 		# Always make sure the attack target is correct
-		if target_node.is_in_group("player"):
-			equipped_weapon.targets = Weapon.TARGETS.Player
-		elif target_node.is_in_group("enemy"):
-			equipped_weapon.targets = Weapon.TARGETS.Enemies
+		if equipped_weapon.targets != Weapon.TARGETS.Both:
+			if target_node.is_in_group("player"):
+				equipped_weapon.targets = Weapon.TARGETS.Player
+			elif target_node.is_in_group("enemy"):
+				equipped_weapon.targets = Weapon.TARGETS.Enemies
 		# Attack
 		equipped_weapon.attack(self) # Pass in the attacker (i.e. self)
 		attack_cooldown_timer = equipped_weapon.cooldown

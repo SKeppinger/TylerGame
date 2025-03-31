@@ -8,6 +8,7 @@ script = ExtResource("1_wton2")
 weapon_type = 2
 origin_type = 1
 behavior = 2
+targets = 2
 attack_damage = 1.0
 attack_time = 0.4
 cooldown = 0.8

@@ -58,6 +58,32 @@ func _process(delta):
 func _physics_process(delta):
 	move_and_slide()
 
+## Avoid Hazards
+# Stop enemies from walking into hazards
+#func avoid_hazards(delta):
+	## Get the destination
+	#var destination = global_position + (velocity.normalized() * 48) #TODO: 48 is a magic number, should be 1.5x the size of the enemy
+	##print("position: ", global_position.x, " ", global_position.y)
+	##print("dest: ", destination.x, " ", destination.y)
+	## Check if destination collides with attacks that harm enemies
+	#var space_state = get_world_2d().direct_space_state
+	#var parameters = PhysicsPointQueryParameters2D.new()
+	#parameters.position = destination
+	#parameters.collide_with_areas = true
+	#parameters.collide_with_bodies = false
+	##parameters.collision_mask = 3
+	#var results = space_state.intersect_point(parameters)
+	#var hazard_ahead = false
+	#for area in results:
+		#var attack = area.collider
+		#if attack is AttackShape and (attack.targets == Weapon.TARGETS.Enemies or attack.targets == Weapon.TARGETS.Both):
+			#hazard_ahead = true
+			#break
+	## If there is a hazard, avoid it
+	##TODO: Smarter pathfinding instead of refusing to move
+	#if hazard_ahead:
+		#velocity = Vector2.ZERO
+
 ## Idle
 # The enemy's idle behavior
 func idle(delta):
@@ -74,6 +100,7 @@ func idle_action(_delta):
 # The enemy's aggro behavior
 func aggro(delta):
 	approach(delta)
+	#avoid_hazards(delta)
 
 ## Approach [Abstract]
 ## When overriding this function, make sure to specify a condition to transition to the attacking or custom state
