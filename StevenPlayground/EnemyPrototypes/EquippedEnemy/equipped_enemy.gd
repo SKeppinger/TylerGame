@@ -3,8 +3,8 @@ extends Enemy
 class_name EquippedEnemy
 
 ## ATTRIBUTES
-@export var idle_speed = 100.0 # The enemy's idle speed
-@export var chase_speed = 300.0 # The enemy's chase speed
+@export var idle_speed = 50.0 # The enemy's idle speed
+@export var chase_speed = 200.0 # The enemy's chase speed
 @export var equipped_weapon: Weapon # The enemy's equipped weapon
 
 ## INSTANCE VARIABLES

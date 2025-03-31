@@ -18,7 +18,7 @@ movement_speed = 300.0
 acceleration = 0.3
 friction = 0.2
 max_hp = 10.0
-equipped_weapon = NodePath("TestWand")
+equipped_weapon = NodePath("TestBow")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_psdlc")

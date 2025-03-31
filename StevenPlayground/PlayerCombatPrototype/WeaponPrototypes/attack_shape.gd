@@ -14,9 +14,10 @@ var pierces # Given the attack is a projectile, how many enemies it pierces befo
 var projectile_speed # Given the attack is a projectile, how fast it travels
 var linger_time # Given the attack lingers, how long it lingers
 
-## TIMERS
+## TIMERS AND CONTROL
 var flicker_timer = 0.0 # Tracks how long a flicker attack has been active
 var linger_timer = 0.0 # Tracks how long a linger attack has been active
+var hit = false # Checks if the attack has hit a target
 
 ## FUNCTIONS
 ## Process
@@ -68,23 +69,25 @@ func custom(delta):
 ## On Body Entered
 # Deal damage to targets
 func _on_body_entered(body):
-	var hit = false
-	# Don't hit self if the attack shouldn't (mainly for melee attacks enemies make against other enemies)
-	if body == attacker and targets != Weapon.TARGETS.Both:
-		return
-	if body.is_in_group("enemy") and (targets == Weapon.TARGETS.Enemies or targets == Weapon.TARGETS.Both):
-		body.hurt(damage)
-		body.knockback(knockback, global_position)
-		hit = true
-	if body.is_in_group("player") and (targets == Weapon.TARGETS.Player or targets == Weapon.TARGETS.Both):
-		#TODO: Player hurt function and knockback
-		hit = true
-	
-	# Manage projectile destruction
-	if hit and behavior == Weapon.BEHAVIOR.Projectile:
-		pierces -= 1
-		if pierces <= 0:
+	if (behavior == Weapon.BEHAVIOR.Projectile and not hit) or behavior != Weapon.BEHAVIOR.Projectile:
+		# Don't hit self if the attack shouldn't (mainly for melee attacks enemies make against other enemies)
+		if body == attacker and targets != Weapon.TARGETS.Both:
+			return
+		if body.is_in_group("enemy") and (targets == Weapon.TARGETS.Enemies or targets == Weapon.TARGETS.Both):
+			body.hurt(damage)
+			body.knockback(knockback, global_position)
+			hit = true
+		if body.is_in_group("player") and (targets == Weapon.TARGETS.Player or targets == Weapon.TARGETS.Both):
+			#TODO: Player hurt function and knockback
+			hit = true
+		
+		# Manage projectile destruction
+		if hit and behavior == Weapon.BEHAVIOR.Projectile:
+			pierces -= 1
+			if pierces <= 0:
+				queue_free()
+			else:
+				hit = false
+		#TODO: Create "wall" group for projectile-destroying objects (or find another way to do this)
+		if body.is_in_group("wall") and behavior == Weapon.BEHAVIOR.Projectile:
 			queue_free()
-	#TODO: Create "wall" group for projectile-destroying objects (or find another way to do this)
-	if body.is_in_group("wall") and behavior == Weapon.BEHAVIOR.Projectile:
-		queue_free()

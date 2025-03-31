@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvqtri62f2iv8"]
+[gd_scene load_steps=4 format=3 uid="uid://dvqtri62f2iv8"]
 
 [ext_resource type="PackedScene" uid="uid://cypknusmj5f" path="res://StevenPlayground/PlayerCombatPrototype/player.tscn" id="1_3jygo"]
 [ext_resource type="PackedScene" uid="uid://clft1therhmlr" path="res://StevenPlayground/EnemyPrototypes/TestSwordEnemy/test_sword_enemy.tscn" id="3_7rdxy"]
+[ext_resource type="PackedScene" uid="uid://31scli7aarhh" path="res://StevenPlayground/EnemyPrototypes/TestBowEnemy/test_bow_enemy.tscn" id="5_cd6ss"]
 
 [node name="Playground" type="Node2D"]
 
@@ -10,3 +11,18 @@ position = Vector2(558, 312)
 
 [node name="TestSwordEnemy" parent="." instance=ExtResource("3_7rdxy")]
 position = Vector2(189, 119)
+
+[node name="TestSwordEnemy2" parent="." instance=ExtResource("3_7rdxy")]
+position = Vector2(118, 366)
+
+[node name="TestSwordEnemy3" parent="." instance=ExtResource("3_7rdxy")]
+position = Vector2(86, 191)
+
+[node name="TestSwordEnemy4" parent="." instance=ExtResource("3_7rdxy")]
+position = Vector2(171, 263)
+
+[node name="TestBowEnemy" parent="." instance=ExtResource("5_cd6ss")]
+position = Vector2(15, 70)
+
+[node name="TestBowEnemy2" parent="." instance=ExtResource("5_cd6ss")]
+position = Vector2(3, 320)

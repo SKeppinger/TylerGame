@@ -19,6 +19,8 @@ enum ENEMY_STATE {Idle, Aggro, Attacking, Custom}
 ## CONTROL VARIABLES
 @onready var current_hp = max_hp # The enemy's current HP
 @onready var target_node = get_tree().get_first_node_in_group("player") # The enemy's current target node
+var spacing_range = 24.0
+var spacing_speed = 32.0
 var state = ENEMY_STATE.Idle # The enemy's current state
 var hurt_timer = 0.0 # A timer to track how long the enemy should be hurting
 var hurting = false # A flag for whether the enemy is invulnerable due to recently being hurt
@@ -100,6 +102,11 @@ func idle_action(_delta):
 # The enemy's aggro behavior
 func aggro(delta):
 	approach(delta)
+	# Don't get too close to the exact position of another enemy (to stop enemies from fully overlapping)
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if global_position.distance_to(enemy.global_position) <= spacing_range:
+			var direction = (global_position - enemy.global_position).normalized()
+			velocity += direction * spacing_speed
 	#avoid_hazards(delta)
 
 ## Approach [Abstract]
