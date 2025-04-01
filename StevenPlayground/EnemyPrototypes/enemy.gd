@@ -135,7 +135,7 @@ func custom(_delta):
 # Called when a damaging object (like an attack or projectile) collides with the enemy.
 func hurt(damage):
 	# If not invulnerable
-	if not hurting:
+	if not hurting and not dying:
 		# Reset to idle state
 		state = ENEMY_STATE.Idle
 		# Process damage
@@ -154,10 +154,11 @@ func hurt(damage):
 ## Knockback
 # Called when the enemy is hurt by an attack that knocks it back
 func knockback(speed, origin):
-	var direction = (global_position - origin).normalized()
-	var distance = speed * invuln_time
-	distance -= distance * knockback_resist
-	velocity = direction * (distance / invuln_time)
+	if not hurting and not dying:
+		var direction = (global_position - origin).normalized()
+		var distance = speed * invuln_time
+		distance -= distance * knockback_resist
+		velocity = direction * (distance / invuln_time)
 
 ## Hurt Action [ABSTRACT]
 ## If you want the enemy to move while hurting, ADD to velocity in hurt action.

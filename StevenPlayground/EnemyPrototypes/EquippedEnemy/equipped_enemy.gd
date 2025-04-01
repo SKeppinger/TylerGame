@@ -5,6 +5,7 @@ class_name EquippedEnemy
 ## ATTRIBUTES
 @export var idle_speed = 50.0 # The enemy's idle speed
 @export var chase_speed = 200.0 # The enemy's chase speed
+@export var cooldown_multiplier = 2.0 # Multiplier for the weapon cooldown so that enemies don't have extremely fast attacks
 @export var equipped_weapon: Weapon # The enemy's equipped weapon
 
 ## INSTANCE VARIABLES
@@ -68,6 +69,6 @@ func attack(delta):
 				equipped_weapon.targets = Weapon.TARGETS.Enemies
 		# Attack
 		equipped_weapon.attack(self) # Pass in the attacker (i.e. self)
-		attack_cooldown_timer = equipped_weapon.cooldown
+		attack_cooldown_timer = equipped_weapon.cooldown * cooldown_multiplier
 		# Return to aggro state
 		state = ENEMY_STATE.Aggro

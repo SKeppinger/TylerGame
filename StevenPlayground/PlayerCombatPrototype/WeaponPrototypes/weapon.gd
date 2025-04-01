@@ -42,6 +42,7 @@ enum TARGETS {Enemies, Player, Both} # Who the attack hurts
 @export var projectile_pierces: int # How many targets the projectile can pierce before being destroyed
 @export var projectile_speed: float # How fast the projectile travels
 @export var linger_time: float # How long the attack lingers
+@export var linger_ticks: int # How many times the attack deals damage
 @export var point_range: float # How far the mouse/point attack can be spawned from the attacker
 @export var enemy_attacker_range: float # How close an enemy must be to use an attacker-origin (non-projectile) attack (accessed by Equipped Enemy)
 
@@ -60,6 +61,7 @@ func attack(attacker):
 	atk.pierces = projectile_pierces
 	atk.projectile_speed = projectile_speed
 	atk.linger_time = linger_time
+	atk.linger_ticks = linger_ticks
 	# Spawn the attack
 	get_tree().root.add_child(atk)
 	# Based on the weapon's origin, set the attack's position

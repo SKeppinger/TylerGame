@@ -13,10 +13,12 @@ var targets # The attack's targets (equivalent to Weapon.TARGETS enum)
 var pierces # Given the attack is a projectile, how many enemies it pierces before being destroyed
 var projectile_speed # Given the attack is a projectile, how fast it travels
 var linger_time # Given the attack lingers, how long it lingers
+var linger_ticks # Given the attack lingers, how many times it deals damage
 
 ## TIMERS AND CONTROL
 var flicker_timer = 0.0 # Tracks how long a flicker attack has been active
 var linger_timer = 0.0 # Tracks how long a linger attack has been active
+var linger_tick_count = 0 # Tracks how many times a linger attack has dealt damage
 var hit = false # Checks if the attack has hit a target
 
 ## FUNCTIONS
@@ -49,17 +51,18 @@ func projectile(delta):
 # The attack shape lingers and damages targets in its area
 func linger(delta):
 	linger_timer += delta
+	# Damage targets in the area
+	if linger_timer >= (linger_time / linger_ticks) * (linger_tick_count + 1):
+		linger_tick_count += 1
+		for body in get_overlapping_bodies():
+			if body.is_in_group("enemy") and (targets == Weapon.TARGETS.Enemies or targets == Weapon.TARGETS.Both):
+				body.knockback(knockback, global_position)
+				body.hurt(damage)
+			if body.is_in_group("player") and (targets == Weapon.TARGETS.Player or targets == Weapon.TARGETS.Both):
+				body.knockback(knockback, global_position)
+				body.hurt(damage)
 	if linger_timer >= linger_time:
 		queue_free()
-	
-	# Damage targets in the area
-	for body in get_overlapping_bodies():
-		if body.is_in_group("enemy") and (targets == Weapon.TARGETS.Enemies or targets == Weapon.TARGETS.Both):
-			body.hurt(damage)
-			body.knockback(knockback, global_position)
-		if body.is_in_group("player") and (targets == Weapon.TARGETS.Player or targets == Weapon.TARGETS.Both):
-			#TODO: Player hurt function and knockback
-			pass
 
 ## Custom (ABSTRACT)
 # Custom behavior, to be overridden
@@ -74,11 +77,12 @@ func _on_body_entered(body):
 		if body == attacker and targets != Weapon.TARGETS.Both:
 			return
 		if body.is_in_group("enemy") and (targets == Weapon.TARGETS.Enemies or targets == Weapon.TARGETS.Both):
-			body.hurt(damage)
 			body.knockback(knockback, global_position)
+			body.hurt(damage)
 			hit = true
 		if body.is_in_group("player") and (targets == Weapon.TARGETS.Player or targets == Weapon.TARGETS.Both):
-			#TODO: Player hurt function and knockback
+			body.knockback(knockback, global_position)
+			body.hurt(damage)
 			hit = true
 		
 		# Manage projectile destruction
