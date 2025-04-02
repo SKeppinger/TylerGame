@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://co22p0n6brvlu"]
+
+[ext_resource type="Script" uid="uid://b1ok7xejfhktb" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/attack_shape.gd" id="1_l21t3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p07gt"]
+size = Vector2(50, 10)
+
+[node name="GoblinBowShape" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_l21t3")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(25, 0)
+shape = SubResource("RectangleShape2D_p07gt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

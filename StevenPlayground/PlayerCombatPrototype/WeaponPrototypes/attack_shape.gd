@@ -87,11 +87,11 @@ func _on_body_entered(body):
 		
 		# Manage projectile destruction
 		if hit and behavior == Weapon.BEHAVIOR.Projectile:
-			pierces -= 1
 			if pierces <= 0:
 				queue_free()
 			else:
 				hit = false
+			pierces -= 1
 		#TODO: Create "wall" group for projectile-destroying objects (or find another way to do this)
 		if body.is_in_group("wall") and behavior == Weapon.BEHAVIOR.Projectile:
 			queue_free()

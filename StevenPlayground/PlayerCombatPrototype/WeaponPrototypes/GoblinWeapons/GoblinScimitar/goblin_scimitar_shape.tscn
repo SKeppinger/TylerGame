@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://tdaeo65soyiu"]
+
+[ext_resource type="Script" uid="uid://b1ok7xejfhktb" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/attack_shape.gd" id="1_kwcpn"]
+
+[node name="GoblinScimitarShape" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_kwcpn")
+
+[node name="Shape" type="CollisionPolygon2D" parent="."]
+rotation = 1.5708
+polygon = PackedVector2Array(-16, 0, 16, 0, 48, -64, -48, -64)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

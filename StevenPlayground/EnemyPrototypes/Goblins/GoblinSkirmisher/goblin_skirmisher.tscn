@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://7mbmlxs4ebm3"]
+
+[ext_resource type="Script" uid="uid://dttpiidgheo27" path="res://StevenPlayground/EnemyPrototypes/EquippedEnemy/equipped_enemy.gd" id="1_ray56"]
+[ext_resource type="PackedScene" uid="uid://dqkbshvnkk5ux" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/GoblinWeapons/GoblinScimitar/goblin_scimitar.tscn" id="2_j8op1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jx7m6"]
+size = Vector2(64, 64)
+
+[node name="GoblinSkirmisher" type="CharacterBody2D" node_paths=PackedStringArray("equipped_weapon") groups=["enemy"]]
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+platform_floor_layers = 0
+safe_margin = 0.001
+script = ExtResource("1_ray56")
+chase_speed = 270.0
+equipped_weapon = NodePath("GoblinScimitar")
+max_hp = 7.0
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jx7m6")
+
+[node name="GoblinScimitar" parent="." instance=ExtResource("2_j8op1")]
