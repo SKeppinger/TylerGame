@@ -57,7 +57,7 @@ func _process(delta):
 ## ALWAYS set velocity in behavior functions, especially if you want the enemy not to move (as in, set it to zero)
 ## Note that the default enemy will not move unless knocked back (all behavior functions set velocity to zero)
 # Called every physics frame
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_and_slide()
 
 ## Avoid Hazards

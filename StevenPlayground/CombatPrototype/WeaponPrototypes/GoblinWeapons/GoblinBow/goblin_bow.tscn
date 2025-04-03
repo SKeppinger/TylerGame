@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cueeucthx4418"]
+
+[ext_resource type="Script" uid="uid://dh6s1jhemg0e1" path="res://StevenPlayground/CombatPrototype/WeaponPrototypes/weapon.gd" id="1_2mk7n"]
+[ext_resource type="PackedScene" uid="uid://co22p0n6brvlu" path="res://StevenPlayground/CombatPrototype/WeaponPrototypes/GoblinWeapons/GoblinBow/goblin_bow_shape.tscn" id="2_6ycix"]
+
+[node name="GoblinBow" type="Node2D"]
+script = ExtResource("1_2mk7n")
+weapon_type = 1
+behavior = 1
+attack_damage = 1.5
+attack_time = 0.25
+cooldown = 0.5
+knockback = 25.0
+attack_shape = ExtResource("2_6ycix")
+projectile_pierces = 1
+projectile_speed = 460.0

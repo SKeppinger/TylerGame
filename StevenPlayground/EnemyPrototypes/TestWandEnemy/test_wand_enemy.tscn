@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b54g4k7cmao7m"]
 
 [ext_resource type="Script" uid="uid://dttpiidgheo27" path="res://StevenPlayground/EnemyPrototypes/EquippedEnemy/equipped_enemy.gd" id="1_tpbxm"]
-[ext_resource type="PackedScene" uid="uid://dv8bbvbd8nmqe" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/TestWand/test_wand.tscn" id="2_n0h74"]
+[ext_resource type="PackedScene" uid="uid://dv8bbvbd8nmqe" path="res://StevenPlayground/CombatPrototype/WeaponPrototypes/TestWand/test_wand.tscn" id="2_n0h74"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jx7m6"]
 size = Vector2(64, 64)

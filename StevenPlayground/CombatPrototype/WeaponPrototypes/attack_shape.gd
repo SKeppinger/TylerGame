@@ -66,32 +66,34 @@ func linger(delta):
 
 ## Custom (ABSTRACT)
 # Custom behavior, to be overridden
-func custom(delta):
+# When overriding this function, make sure to include a condition to queue_free the attack
+func custom(_delta):
 	pass
 
 ## On Body Entered
 # Deal damage to targets
 func _on_body_entered(body):
-	if (behavior == Weapon.BEHAVIOR.Projectile and not hit) or behavior != Weapon.BEHAVIOR.Projectile:
-		# Don't hit self if the attack shouldn't (mainly for melee attacks enemies make against other enemies)
-		if body == attacker and targets != Weapon.TARGETS.Both:
-			return
-		if body.is_in_group("enemy") and (targets == Weapon.TARGETS.Enemies or targets == Weapon.TARGETS.Both):
-			body.knockback(knockback, global_position)
-			body.hurt(damage)
-			hit = true
-		if body.is_in_group("player") and (targets == Weapon.TARGETS.Player or targets == Weapon.TARGETS.Both):
-			body.knockback(knockback, global_position)
-			body.hurt(damage)
-			hit = true
-		
-		# Manage projectile destruction
-		if hit and behavior == Weapon.BEHAVIOR.Projectile:
-			if pierces <= 0:
+	if damage > 0:
+		if (behavior == Weapon.BEHAVIOR.Projectile and not hit) or behavior != Weapon.BEHAVIOR.Projectile:
+			# Don't hit self if the attack shouldn't (mainly for melee attacks enemies make against other enemies)
+			if body == attacker and targets != Weapon.TARGETS.Both:
+				return
+			if body.is_in_group("enemy") and (targets == Weapon.TARGETS.Enemies or targets == Weapon.TARGETS.Both):
+				body.knockback(knockback, global_position)
+				body.hurt(damage)
+				hit = true
+			if body.is_in_group("player") and (targets == Weapon.TARGETS.Player or targets == Weapon.TARGETS.Both):
+				body.knockback(knockback, global_position)
+				body.hurt(damage)
+				hit = true
+			
+			# Manage projectile destruction
+			if hit and behavior == Weapon.BEHAVIOR.Projectile:
+				if pierces <= 0:
+					queue_free()
+				else:
+					hit = false
+				pierces -= 1
+			#TODO: Create "wall" group for projectile-destroying objects (or find another way to do this)
+			if body.is_in_group("wall") and behavior == Weapon.BEHAVIOR.Projectile:
 				queue_free()
-			else:
-				hit = false
-			pierces -= 1
-		#TODO: Create "wall" group for projectile-destroying objects (or find another way to do this)
-		if body.is_in_group("wall") and behavior == Weapon.BEHAVIOR.Projectile:
-			queue_free()

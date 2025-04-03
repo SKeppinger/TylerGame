@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://xci71sjtbkx6"]
 
-[ext_resource type="Script" uid="uid://b1ok7xejfhktb" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/attack_shape.gd" id="1_t5xi8"]
+[ext_resource type="Script" uid="uid://b1ok7xejfhktb" path="res://StevenPlayground/CombatPrototype/WeaponPrototypes/attack_shape.gd" id="1_t5xi8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r1c87"]
 radius = 48.0

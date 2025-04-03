@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvx71cvicp8sc"]
+
+[ext_resource type="Script" uid="uid://dh6s1jhemg0e1" path="res://StevenPlayground/CombatPrototype/WeaponPrototypes/weapon.gd" id="1_se2k3"]
+[ext_resource type="PackedScene" uid="uid://b35gfimg8p33v" path="res://StevenPlayground/CombatPrototype/WeaponPrototypes/SkeletonWeapons/BoneStaff/bone_staff_shape.tscn" id="2_cmojj"]
+
+[node name="BoneStaff" type="Node2D"]
+script = ExtResource("1_se2k3")
+weapon_type = 2
+behavior = 3
+attack_time = 0.8
+cooldown = 1.5
+attack_shape = ExtResource("2_cmojj")
+enemy_attacker_range = 500.0

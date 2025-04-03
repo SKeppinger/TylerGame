@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://1ty7qyvmraxa"]
+
+[ext_resource type="Script" uid="uid://dh6s1jhemg0e1" path="res://StevenPlayground/CombatPrototype/WeaponPrototypes/weapon.gd" id="1_fwyfr"]
+[ext_resource type="PackedScene" uid="uid://by2rbjdkqli8r" path="res://StevenPlayground/CombatPrototype/WeaponPrototypes/SkeletonWeapons/BoneSword/bone_sword_shape.tscn" id="2_rjxkc"]
+
+[node name="BoneSword" type="Node2D"]
+script = ExtResource("1_fwyfr")
+attack_damage = 3.5
+attack_time = 0.25
+cooldown = 0.5
+knockback = 50.0
+attack_shape = ExtResource("2_rjxkc")
+enemy_attacker_range = 96.0

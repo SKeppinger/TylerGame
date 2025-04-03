@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvxirudxuq5wf"]
+
+[ext_resource type="Script" uid="uid://b4hnt4uryovgo" path="res://StevenPlayground/EnemyPrototypes/Skeletons/skeleton.gd" id="1_sjlk5"]
+[ext_resource type="PackedScene" uid="uid://1ty7qyvmraxa" path="res://StevenPlayground/CombatPrototype/WeaponPrototypes/SkeletonWeapons/BoneSword/bone_sword.tscn" id="2_2syfr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jx7m6"]
+size = Vector2(64, 64)
+
+[node name="SkeletonSoldier" type="CharacterBody2D" node_paths=PackedStringArray("equipped_weapon") groups=["enemy"]]
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+platform_floor_layers = 0
+safe_margin = 0.001
+script = ExtResource("1_sjlk5")
+chase_speed = 190.0
+equipped_weapon = NodePath("BoneSword")
+max_hp = 14.0
+knockback_resist = 0.2
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jx7m6")
+
+[node name="BoneSword" parent="." instance=ExtResource("2_2syfr")]

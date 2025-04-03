@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://csu770yqafsj2"]
 
-[ext_resource type="Script" uid="uid://b1ok7xejfhktb" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/attack_shape.gd" id="1_ulxb2"]
+[ext_resource type="Script" uid="uid://b1ok7xejfhktb" path="res://StevenPlayground/CombatPrototype/WeaponPrototypes/attack_shape.gd" id="1_ulxb2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p07gt"]
 size = Vector2(30, 10)

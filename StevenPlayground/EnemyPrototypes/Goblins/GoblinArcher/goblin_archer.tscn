@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bm3hd3oiw77rh"]
 
 [ext_resource type="Script" uid="uid://dttpiidgheo27" path="res://StevenPlayground/EnemyPrototypes/EquippedEnemy/equipped_enemy.gd" id="1_q4y0s"]
-[ext_resource type="PackedScene" uid="uid://cueeucthx4418" path="res://StevenPlayground/PlayerCombatPrototype/WeaponPrototypes/GoblinWeapons/GoblinBow/goblin_bow.tscn" id="2_hkkxj"]
+[ext_resource type="PackedScene" uid="uid://cueeucthx4418" path="res://StevenPlayground/CombatPrototype/WeaponPrototypes/GoblinWeapons/GoblinBow/goblin_bow.tscn" id="2_hkkxj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jx7m6"]
 size = Vector2(64, 64)
