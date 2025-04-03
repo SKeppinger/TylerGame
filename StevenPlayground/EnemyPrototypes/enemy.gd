@@ -6,6 +6,10 @@
 extends CharacterBody2D
 class_name Enemy
 
+#TODO: Conditions! Changes to enemy behavior based on in-game circumstances
+# (i.e. if they are summoned by the player, they should attack other enemies)
+# (or other more simple conditions, like slowed or poisoned)
+
 ## STATE
 enum ENEMY_STATE {Idle, Aggro, Attacking, Custom}
 
