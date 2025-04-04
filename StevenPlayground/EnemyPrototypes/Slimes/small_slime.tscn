@@ -1,23 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://clk8lx021ynas"]
+[gd_scene load_steps=4 format=3 uid="uid://cqgiiud6diy63"]
 
-[ext_resource type="Script" uid="uid://bomu7jxhwycng" path="res://StevenPlayground/EnemyPrototypes/Slime/slime.gd" id="1_jfr63"]
+[ext_resource type="Script" uid="uid://bomu7jxhwycng" path="res://StevenPlayground/EnemyPrototypes/Slimes/slime.gd" id="1_gjdob"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jx7m6"]
-size = Vector2(64, 64)
+size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lahmp"]
-size = Vector2(68, 68)
+size = Vector2(36, 36)
 
-[node name="Slime" type="CharacterBody2D" groups=["enemy"]]
+[node name="SmallSlime" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 5
 motion_mode = 1
 platform_floor_layers = 0
 safe_margin = 0.001
-script = ExtResource("1_jfr63")
-contact_knockback = 40.0
-max_hp = 8.0
-knockback_resist = -0.1
+script = ExtResource("1_gjdob")
+hop_range = 75.0
+jump_range = 230.0
+jump_start_time = 0.5
+jump_time = 0.3
+split_chance = 0.0
+contact_damage = 0.5
+contact_knockback = 25.0
+max_hp = 4.0
+knockback_resist = -0.5
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jx7m6")

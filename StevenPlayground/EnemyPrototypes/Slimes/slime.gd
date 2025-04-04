@@ -12,6 +12,8 @@ class_name Slime
 @export var jump_cooldown = 1.5 # How long after a jump before the slime can jump again
 @export var recovery_time = 0.5 # How long the slime knocks itself back from its target
 @export var self_knockback = 200.0 # How fast the slime knocks itself back from its target
+@export var split_chance = 0.5 # Percentage chance to spawn two descendants on death
+@export var descendant: PackedScene # What enemy to (potentially) spawn on death
 
 ## INSTANCE VARIABLES
 var jump_direction # Tracks the direction the player was in when the slime initiated the jump
@@ -59,6 +61,7 @@ func approach(delta):
 				hopping = false
 	# Update hop cooldown timer
 	else:
+		velocity = Vector2.ZERO
 		hop_cooldown_timer += delta
 
 ## Attack
@@ -91,6 +94,7 @@ func attack(delta):
 				jumping = false
 	# Update jump cooldown timer
 	else:
+		velocity = Vector2.ZERO
 		jump_cooldown_timer += delta
 
 ## Contact Action
@@ -115,6 +119,27 @@ func contact_action(delta):
 # Interrupt all jumps and hops
 func hurt_action():
 	reset()
+
+## Death Action
+# Potentially spawn two descendants (if applicable)
+func death_action(_delta):
+	if descendant != null and split_chance > 0:
+		var roll = randf_range(0, 1)
+		if roll <= split_chance:
+			var desc1 = descendant.instantiate()
+			var desc2 = descendant.instantiate()
+			get_tree().root.add_child(desc1)
+			get_tree().root.add_child(desc2)
+			desc1.global_position = global_position + Vector2(randf_range(spacing_range, spacing_range * 2), randf_range(spacing_range, spacing_range * 2))
+			desc2.global_position = global_position + Vector2(randf_range(spacing_range, spacing_range * 2), randf_range(spacing_range, spacing_range * 2))
+			desc1.hop_cooldown_timer -= randf_range(0, hop_cooldown)
+			desc2.hop_cooldown_timer -= randf_range(0, hop_cooldown)
+			desc1.jump_cooldown_timer -= randf_range(0, jump_cooldown)
+			desc2.jump_cooldown_timer -= randf_range(0, jump_cooldown)
+			# Make the descendants invincible upon spawning (to stop them from being instantly hurt)
+			desc1.hurting = true
+			desc2.hurting = true
+	dead = true
 
 ## Reset
 # Process an interruption (contact)

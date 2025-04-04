@@ -23,7 +23,7 @@ func idle_action(_delta):
 ## Process
 # Perform contact action, or normal process
 func _process(delta):
-	if contacted:
+	if contacted and not hurting and not dying:
 		contact_action(delta)
 	else:
 		super._process(delta)

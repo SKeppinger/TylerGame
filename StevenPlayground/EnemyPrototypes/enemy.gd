@@ -108,8 +108,10 @@ func aggro(delta):
 	approach(delta)
 	# Don't get too close to the exact position of another enemy (to stop enemies from fully overlapping)
 	for enemy in get_tree().get_nodes_in_group("enemy"):
-		if global_position.distance_to(enemy.global_position) <= spacing_range:
+		if enemy != self and global_position.distance_to(enemy.global_position) <= spacing_range:
 			var direction = (global_position - enemy.global_position).normalized()
+			if direction == Vector2.ZERO:
+				direction = Vector2(randf_range(0, 1), randf_range(0, 1))
 			velocity += direction * spacing_speed
 	#avoid_hazards(delta)
 

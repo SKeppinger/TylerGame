@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dej50s381jov6"]
+
+[ext_resource type="Script" uid="uid://bomu7jxhwycng" path="res://StevenPlayground/EnemyPrototypes/Slimes/slime.gd" id="1_dknyl"]
+[ext_resource type="PackedScene" uid="uid://clk8lx021ynas" path="res://StevenPlayground/EnemyPrototypes/Slimes/slime.tscn" id="2_dknyl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jx7m6"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lahmp"]
+size = Vector2(132, 132)
+
+[node name="BigSlime" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+platform_floor_layers = 0
+safe_margin = 0.001
+script = ExtResource("1_dknyl")
+hop_range = 50.0
+hop_start_time = 0.1
+hop_cooldown = 0.5
+jump_range = 450.0
+jump_time = 0.75
+jump_cooldown = 2.0
+self_knockback = 150.0
+split_chance = 1.0
+descendant = ExtResource("2_dknyl")
+contact_damage = 2.0
+contact_knockback = 60.0
+max_hp = 16.0
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jx7m6")
+
+[node name="ContactArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactArea"]
+shape = SubResource("RectangleShape2D_lahmp")
+
+[connection signal="body_entered" from="ContactArea" to="." method="_on_contact_area_body_entered"]
