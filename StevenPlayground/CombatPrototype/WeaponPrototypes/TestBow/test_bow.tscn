@@ -7,7 +7,7 @@
 script = ExtResource("1_rby4t")
 weapon_type = 1
 behavior = 1
-attack_damage = 2.0
+attack_damage = 1.5
 attack_time = 0.25
 cooldown = 0.5
 knockback = 15.0

@@ -10,4 +10,4 @@ extends Node
 ## For a 1x2 room:
 ## topright, bottomright, bottomdown, bottomleft, topleft, topup
 ## I hope this makes sense.
-@export var connections: Array
+@export var connections: Array[int]

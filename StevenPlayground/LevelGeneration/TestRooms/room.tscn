@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://ny5cgq8cfaxd"]
+[gd_scene load_steps=3 format=3 uid="uid://ny5cgq8cfaxd"]
 
+[ext_resource type="Script" uid="uid://7ssbe1k5a1pv" path="res://StevenPlayground/LevelGeneration/room.gd" id="1_obyx6"]
 [ext_resource type="Texture2D" uid="uid://bhy6ih4iqthmo" path="res://StevenPlayground/LevelGeneration/square_room.png" id="1_v2h26"]
 
 [node name="Room" type="Node2D"]
+script = ExtResource("1_obyx6")
+grid_width = 1
+grid_height = 1
+connections = Array[int]([1, 1, 1, 1])
 
 [node name="SquareRoom" type="Sprite2D" parent="."]
 texture = ExtResource("1_v2h26")

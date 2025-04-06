@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcuarbile8lyk"]
+[gd_scene load_steps=4 format=3 uid="uid://dcuarbile8lyk"]
 
 [ext_resource type="Texture2D" uid="uid://bhy6ih4iqthmo" path="res://StevenPlayground/LevelGeneration/square_room.png" id="1_mbqat"]
+[ext_resource type="Script" uid="uid://7ssbe1k5a1pv" path="res://StevenPlayground/LevelGeneration/room.gd" id="1_wrrek"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mbqat"]
 font_color = Color(0, 0, 0, 1)
 
 [node name="BossRoom" type="Node2D"]
+script = ExtResource("1_wrrek")
+grid_width = 1
+grid_height = 1
+connections = Array[int]([1, 1, 1, 1])
 
 [node name="SquareRoom" type="Sprite2D" parent="."]
 texture = ExtResource("1_mbqat")
