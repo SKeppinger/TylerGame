@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjfm3xj0e128a"]
+
+[ext_resource type="Texture2D" uid="uid://bhy6ih4iqthmo" path="res://StevenPlayground/LevelGeneration/square_room.png" id="1_pdxad"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pdxad"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="StartRoom" type="Node2D"]
+
+[node name="SquareRoom" type="Sprite2D" parent="."]
+texture = ExtResource("1_pdxad")
+
+[node name="Door" type="Node2D" parent="." groups=["lg_door"]]
+position = Vector2(64, 0)
+
+[node name="Door2" type="Node2D" parent="." groups=["lg_door"]]
+position = Vector2(0, 64)
+
+[node name="Door3" type="Node2D" parent="." groups=["lg_door"]]
+position = Vector2(-64, 0)
+
+[node name="Door4" type="Node2D" parent="." groups=["lg_door"]]
+position = Vector2(0, -64)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -23.0
+offset_top = -12.0
+offset_right = 25.0
+offset_bottom = 11.0
+text = "START"
+label_settings = SubResource("LabelSettings_pdxad")

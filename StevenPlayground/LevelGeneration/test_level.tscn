@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://8n61w6rw4mij"]
+
+[ext_resource type="PackedScene" uid="uid://b4cenroqjjk52" path="res://StevenPlayground/LevelGeneration/test_level_generator.tscn" id="1_ntlj3"]
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="TestLevelGenerator" parent="." instance=ExtResource("1_ntlj3")]
+origin = Vector2(600, 300)

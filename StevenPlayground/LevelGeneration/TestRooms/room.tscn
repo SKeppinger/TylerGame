@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://ny5cgq8cfaxd"]
+
+[ext_resource type="Texture2D" uid="uid://bhy6ih4iqthmo" path="res://StevenPlayground/LevelGeneration/square_room.png" id="1_v2h26"]
+
+[node name="Room" type="Node2D"]
+
+[node name="SquareRoom" type="Sprite2D" parent="."]
+texture = ExtResource("1_v2h26")
+
+[node name="Door" type="Node2D" parent="." groups=["lg_door"]]
+position = Vector2(64, 0)
+
+[node name="Door2" type="Node2D" parent="." groups=["lg_door"]]
+position = Vector2(0, 64)
+
+[node name="Door3" type="Node2D" parent="." groups=["lg_door"]]
+position = Vector2(-64, 0)
+
+[node name="Door4" type="Node2D" parent="." groups=["lg_door"]]
+position = Vector2(0, -64)
