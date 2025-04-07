@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhy6ih4iqthmo"
-path="res://.godot/imported/square_room.png-093557e489c9f8ef076a0ff8fa146739.ctex"
+path="res://.godot/imported/square_room.png-1f1252cdf803574988c5bc1406c6d72a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://StevenPlayground/LevelGeneration/square_room.png"
-dest_files=["res://.godot/imported/square_room.png-093557e489c9f8ef076a0ff8fa146739.ctex"]
+source_file="res://StevenPlayground/LevelGeneration/Tileset/square_room.png"
+dest_files=["res://.godot/imported/square_room.png-1f1252cdf803574988c5bc1406c6d72a.ctex"]
 
 [params]
 

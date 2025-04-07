@@ -5,11 +5,9 @@
 
 [node name="Corridor" type="Node2D"]
 script = ExtResource("1_kdmru")
-grid_width = 2
+grid_width = 1
 grid_height = 1
-connections = Array[int]([1, 0, 0, 1, 0, 0])
+connections = Array[int]([1, 0, 1, 0])
 
 [node name="Corridor" type="Sprite2D" parent="."]
-position = Vector2(-64, 0)
-scale = Vector2(2, 2)
 texture = ExtResource("2_xxg06")
