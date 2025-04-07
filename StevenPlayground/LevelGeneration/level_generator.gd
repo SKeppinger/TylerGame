@@ -8,10 +8,12 @@ extends Node
 @export var grid_size = 30 # The size (side length) of the entire grid, in boxes
 @export var origin: Vector2 # The actual position in the level scene around which to center the grid box
 @export var distance_to_boss = 4 # How many rooms between the start room and boss room
+@export var minimum_rooms = 8 # Minimum number of rooms in dungeon (provided it is possible)
 @export var base_offshoot_chance = 0.8 # The base chance to create an offshoot from a given room
 @export var extra_door_chance = 0.5 # The chance to add an optional door to a room
 
 var grid = []
+var room_count = 0
 var door_positions = []
 var boss_room_position
 
@@ -39,6 +41,7 @@ func add_room(row, column, room):
 				grid[row][column] = room
 			else:
 				grid[row - i][column + j] = Vector2(row, column)
+	room_count += 1
 	return true
 
 # Returns the grid space targeted by the input door, given that top-right of room is at (x,y)
@@ -305,7 +308,7 @@ func generate():
 # Generate an offshoot recursively, with a decreasing chance to continue the offshoot
 func generate_offshoot(room_position, chance):
 	var rng = randf()
-	if rng <= chance:
+	if rng <= chance or (chance == base_offshoot_chance and room_count < minimum_rooms):
 		var origin_room = grid[room_position.x][room_position.y]
 		var possible_rooms = room_list
 		var possible_doors = []
