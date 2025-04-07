@@ -1,13 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4cenroqjjk52"]
+[gd_scene load_steps=8 format=3 uid="uid://b4cenroqjjk52"]
 
 [ext_resource type="Script" uid="uid://c8r35gxmw0wnc" path="res://StevenPlayground/LevelGeneration/level_generator.gd" id="1_ojwgf"]
 [ext_resource type="PackedScene" uid="uid://bjfm3xj0e128a" path="res://StevenPlayground/LevelGeneration/TestRooms/start_room.tscn" id="2_xm45f"]
 [ext_resource type="PackedScene" uid="uid://dcuarbile8lyk" path="res://StevenPlayground/LevelGeneration/TestRooms/boss_room.tscn" id="3_uhpf5"]
+[ext_resource type="PackedScene" uid="uid://ckv3yf8e0tua5" path="res://StevenPlayground/LevelGeneration/door.tscn" id="4_1mn0x"]
 [ext_resource type="PackedScene" uid="uid://ny5cgq8cfaxd" path="res://StevenPlayground/LevelGeneration/TestRooms/room.tscn" id="4_u26pa"]
 [ext_resource type="PackedScene" uid="uid://ctolbbrbx6puv" path="res://StevenPlayground/LevelGeneration/TestRoomsComplex/corridor.tscn" id="5_cmsqi"]
+[ext_resource type="PackedScene" uid="uid://f0ysmwnldeqc" path="res://StevenPlayground/LevelGeneration/TestRoomsComplex/pillar_room.tscn" id="6_373t1"]
 
 [node name="TestLevelGenerator" type="Node2D"]
 script = ExtResource("1_ojwgf")
 start_room = ExtResource("2_xm45f")
 boss_room = ExtResource("3_uhpf5")
-room_list = Array[PackedScene]([ExtResource("4_u26pa"), ExtResource("5_cmsqi")])
+door = ExtResource("4_1mn0x")
+room_list = Array[PackedScene]([ExtResource("4_u26pa"), ExtResource("5_cmsqi"), ExtResource("6_373t1")])

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://f0ysmwnldeqc"]
+
+[ext_resource type="Script" uid="uid://7ssbe1k5a1pv" path="res://StevenPlayground/LevelGeneration/room.gd" id="1_ffkc4"]
+[ext_resource type="Texture2D" uid="uid://bfnewxsxjpfvo" path="res://StevenPlayground/LevelGeneration/Tileset/room3.png" id="2_1x26r"]
+
+[node name="PillarRoom" type="Node2D"]
+script = ExtResource("1_ffkc4")
+grid_width = 1
+grid_height = 1
+connections = Array[int]([1, 1, 1, 1])
+
+[node name="SquareRoom" type="Sprite2D" parent="."]
+texture = ExtResource("2_1x26r")

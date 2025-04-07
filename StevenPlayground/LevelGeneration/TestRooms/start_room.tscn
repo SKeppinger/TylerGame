@@ -10,22 +10,10 @@ font_color = Color(0, 0, 0, 1)
 script = ExtResource("1_wdscn")
 grid_width = 1
 grid_height = 1
-connections = [1, 1, 1, 1]
+connections = Array[int]([1, 1, 1, 1])
 
 [node name="SquareRoom" type="Sprite2D" parent="."]
 texture = ExtResource("1_pdxad")
-
-[node name="Door" type="Node2D" parent="." groups=["lg_door"]]
-position = Vector2(64, 0)
-
-[node name="Door2" type="Node2D" parent="." groups=["lg_door"]]
-position = Vector2(0, 64)
-
-[node name="Door3" type="Node2D" parent="." groups=["lg_door"]]
-position = Vector2(-64, 0)
-
-[node name="Door4" type="Node2D" parent="." groups=["lg_door"]]
-position = Vector2(0, -64)
 
 [node name="Label" type="Label" parent="."]
 offset_left = -23.0

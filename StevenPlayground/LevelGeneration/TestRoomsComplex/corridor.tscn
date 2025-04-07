@@ -13,9 +13,3 @@ connections = Array[int]([1, 0, 0, 1, 0, 0])
 position = Vector2(-64, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("2_xxg06")
-
-[node name="Door" type="Node2D" parent="." groups=["lg_door"]]
-position = Vector2(128, 0)
-
-[node name="Door2" type="Node2D" parent="." groups=["lg_door"]]
-position = Vector2(-128, 0)

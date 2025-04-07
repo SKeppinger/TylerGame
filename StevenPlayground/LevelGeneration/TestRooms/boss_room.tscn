@@ -15,18 +15,6 @@ connections = Array[int]([1, 1, 1, 1])
 [node name="SquareRoom" type="Sprite2D" parent="."]
 texture = ExtResource("1_mbqat")
 
-[node name="Door" type="Node2D" parent="." groups=["lg_door"]]
-position = Vector2(64, 0)
-
-[node name="Door2" type="Node2D" parent="." groups=["lg_door"]]
-position = Vector2(0, 64)
-
-[node name="Door3" type="Node2D" parent="." groups=["lg_door"]]
-position = Vector2(-64, 0)
-
-[node name="Door4" type="Node2D" parent="." groups=["lg_door"]]
-position = Vector2(0, -64)
-
 [node name="Label" type="Label" parent="."]
 offset_left = -23.0
 offset_top = -12.0

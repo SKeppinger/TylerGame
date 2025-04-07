@@ -1,15 +1,19 @@
 extends Node
 
-@export var start_room: PackedScene
-@export var boss_room: PackedScene
-@export var room_list: Array[PackedScene]
-@export var grid_box_size = 128
-@export var grid_size = 30
-@export var origin: Vector2
-@export var distance_to_boss = 4
-@export var base_offshoot_chance = 0.5
+@export var start_room: PackedScene # The level's start room
+@export var boss_room: PackedScene # The level's boss room
+@export var door: PackedScene # The door scene (assumed to be facing right)
+@export var room_list: Array[PackedScene] # A list of other rooms that can populate the level
+@export var grid_box_size = 128 # The size (side length) of one grid box, in pixels
+@export var grid_size = 30 # The size (side length) of the entire grid, in boxes
+@export var origin: Vector2 # The actual position in the level scene around which to center the grid box
+@export var distance_to_boss = 4 # How many rooms between the start room and boss room
+@export var base_offshoot_chance = 0.8 # The base chance to create an offshoot from a given room
+@export var extra_door_chance = 0.5 # The chance to add an optional door to a room
 
 var grid = []
+var door_positions = []
+var boss_room_position
 
 func _ready():
 	for row in range(grid_size):
@@ -34,7 +38,7 @@ func add_room(row, column, room):
 			if i == 0 and j == 0:
 				grid[row][column] = room
 			else:
-				grid[row - i][column + j] = 1
+				grid[row - i][column + j] = Vector2(row, column)
 	return true
 
 # Returns the grid space targeted by the input door, given that top-right of room is at (x,y)
@@ -82,6 +86,96 @@ func get_grid_box_from_door(room, door_number):
 	else:
 		return Vector2(door_number - (room.grid_height * 2) - (room.grid_width * 2) + 1, 0)
 
+# Add a door to a room
+func add_door(room_position, door_number):
+	var door_instance = door.instantiate()
+	get_tree().root.add_child.call_deferred(door_instance)
+	var room = grid[room_position.x][room_position.y]
+	var door_position = room_position + get_grid_box_from_door(room, door_number)
+	var center = (grid_size / 2)
+	if grid_size % 2 == 0:
+		center -= 1
+	door_instance.global_position.x = (door_position.x * grid_box_size) - (center * grid_box_size) + origin.x
+	door_instance.global_position.y = (door_position.y * grid_box_size) - (center * grid_box_size) + origin.y
+	var door_direction = get_dir_from_door(room, door_number)
+	match door_direction:
+		Vector2.RIGHT:
+			door_instance.global_position.x += grid_box_size / 2
+		Vector2.DOWN:
+			door_instance.rotation_degrees = 90
+			door_instance.global_position.y += grid_box_size / 2
+		Vector2.LEFT:
+			door_instance.global_position.x -= grid_box_size / 2
+		Vector2.UP:
+			door_instance.rotation_degrees = 90
+			door_instance.global_position.y -= grid_box_size / 2
+	door_positions.append(door_instance.global_position)
+	#TODO: This is temporary so I can see the doors
+	door_instance.z_index = 1
+
+# Add optional doors
+func add_optional_doors():
+	for row in range(grid_size):
+		for col in range(grid_size):
+			if grid[row][col] and grid[row][col] is not Vector2:
+				# Don't add extra doors to boss room
+				if Vector2(row, col) == boss_room_position:
+					continue
+				var room = grid[row][col]
+				for junction in range(len(room.connections)):
+					if room.connections[junction] == 1 and !door_exists(Vector2(row, col), junction):
+						var target_space = get_space_from_door(row, col, room, junction)
+						var to_direction = get_dir_from_door(room, junction)
+						if grid[target_space.x][target_space.y] != null:
+							var target_room = null
+							var target_room_pos = target_space
+							if grid[target_space.x][target_space.y] is Vector2:
+								target_room_pos = grid[target_space.x][target_space.y]
+								target_room = grid[target_room_pos.x][target_room_pos.y]
+							else:
+								target_room = grid[target_space.x][target_space.y]
+							# Don't add extra doors to boss room
+							if target_room_pos == boss_room_position:
+								continue
+							# Check if target room has a potential door in that space
+							var can_traverse = false
+							for door_num in range(len(target_room.connections)):
+								if target_room.connections[door_num] == 1:
+									if target_room_pos + get_grid_box_from_door(target_room, door_num) == target_space:
+										if get_dir_from_door(target_room, door_num) == -1 * to_direction:
+											# Chance to add door
+											var rng = randf()
+											if rng <= extra_door_chance:
+												add_door(Vector2(row, col), junction)
+												add_door(target_room_pos, door_num)
+												print("Optional door added!")
+
+# Check if a door exists in a certain position
+func door_exists(room_position, door_number):
+	var room = grid[room_position.x][room_position.y]
+	var grid_box = room_position + get_grid_box_from_door(room, door_number)
+	var door_direction = get_dir_from_door(room, door_number)
+	var center = (grid_size / 2)
+	if grid_size % 2 == 0:
+		center -= 1
+	var door_position = Vector2.ZERO
+	door_position.x = (grid_box.x * grid_box_size) - (center * grid_box_size) + origin.x
+	door_position.y = (grid_box.y * grid_box_size) - (center * grid_box_size) + origin.y
+	match door_direction:
+		Vector2.RIGHT:
+			door_position.x += grid_box_size / 2
+		Vector2.DOWN:
+			door_position.y += grid_box_size / 2
+		Vector2.LEFT:
+			door_position.x -= grid_box_size / 2
+		Vector2.UP:
+			door_position.y -= grid_box_size / 2
+	var door_check = false
+	for position in door_positions:
+		if position == door_position:
+			door_check = true
+	return door_check
+
 # Generate a level
 func generate():
 	# Create start room
@@ -124,6 +218,9 @@ func generate():
 							if add_room(position.x, position.y, random_room):
 								print("Path room placed at ", position.x, " ", position.y)
 								placed = true
+								# Add doors
+								add_door(position, junction)
+								add_door(Vector2(current_x, current_y), random_door)
 								current_x = position.x
 								current_y = position.y
 								path_list.append(Vector2(position.x, position.y))
@@ -172,7 +269,11 @@ func generate():
 					# Attempt to place the room
 					if add_room(position.x, position.y, boss_room):
 						print("Boss room placed at ", position.x, " ", position.y)
+						boss_room_position = position
 						placed = true
+						# Add doors
+						add_door(position, junction)
+						add_door(Vector2(current_x, current_y), random_door)
 						break
 					# If the room was not placed, continue searching through doors
 		# If the boss room was not placed, fail
@@ -190,11 +291,14 @@ func generate():
 		# Instantiate all rooms
 		for row in range(grid_size):
 			for col in range(grid_size):
-				if grid[row][col] and grid[row][col] is not int:
+				if grid[row][col] and grid[row][col] is not Vector2:
 					var room = grid[row][col]
 					get_tree().root.add_child.call_deferred(room)
 					room.global_position.x = (row * grid_box_size) - (center * grid_box_size) + origin.x
 					room.global_position.y = (col * grid_box_size) - (center * grid_box_size) + origin.y
+		
+		# Add optional doors
+		add_optional_doors()
 	else:
 		print("Error creating start room.")
 
@@ -234,6 +338,9 @@ func generate_offshoot(room_position, chance):
 							print("Offshoot room placed at ", position.x, " ", position.y)
 							placed = true
 							placed_position = position
+							# Add doors
+							add_door(position, junction)
+							add_door(room_position, random_door)
 							break
 						# If the room was not placed, continue searching through doors
 			# If none of the doors were able to connect, choose a different door

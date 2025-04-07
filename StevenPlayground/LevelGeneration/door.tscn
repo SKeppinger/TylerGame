@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckv3yf8e0tua5"]
+
+[ext_resource type="Script" uid="uid://dbfe3260numkl" path="res://StevenPlayground/LevelGeneration/door.gd" id="1_0ewwf"]
+[ext_resource type="Texture2D" uid="uid://s4ol0ge6elj3" path="res://StevenPlayground/LevelGeneration/Tileset/temp_door.png" id="2_surwd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r45so"]
+size = Vector2(5, 10)
+
+[node name="Door" type="Node2D" groups=["door"]]
+script = ExtResource("1_0ewwf")
+
+[node name="TempDoor" type="Sprite2D" parent="."]
+position = Vector2(0, -2.38419e-07)
+scale = Vector2(0.0137209, 0.0133333)
+texture = ExtResource("2_surwd")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_r45so")
