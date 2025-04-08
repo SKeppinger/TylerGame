@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvjfbfgt6paus"]
+
+[ext_resource type="Script" uid="uid://7ssbe1k5a1pv" path="res://StevenPlayground/LevelGeneration/room.gd" id="1_7yxu7"]
+[ext_resource type="Texture2D" uid="uid://bfnewxsxjpfvo" path="res://StevenPlayground/LevelGeneration/Tileset/room3.png" id="2_rf25h"]
+[ext_resource type="PackedScene" uid="uid://2tp28iegjagk" path="res://StevenPlayground/LevelGeneration/RoomComponents/wall.tscn" id="3_2lcba"]
+
+[node name="PillarRoom" type="Node2D"]
+script = ExtResource("1_7yxu7")
+grid_width = 1
+grid_height = 1
+connections = Array[int]([1, 1, 1, 1])
+
+[node name="SquareRoom" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_rf25h")
+
+[node name="Wall" parent="." instance=ExtResource("3_2lcba")]
+position = Vector2(-1, -254)
+
+[node name="Wall2" parent="." instance=ExtResource("3_2lcba")]
+position = Vector2(1, 254)
+
+[node name="Wall3" parent="." instance=ExtResource("3_2lcba")]
+position = Vector2(254, -1)
+rotation = 1.5708
+
+[node name="Wall4" parent="." instance=ExtResource("3_2lcba")]
+position = Vector2(-254, -4)
+rotation = 1.5708
+
+[node name="Wall5" parent="." instance=ExtResource("3_2lcba")]
+position = Vector2(0, -122)
+scale = Vector2(0.5, 1)
+
+[node name="Wall6" parent="." instance=ExtResource("3_2lcba")]
+position = Vector2(0, 122)
+scale = Vector2(0.5, 1)
+
+[node name="Wall7" parent="." instance=ExtResource("3_2lcba")]
+position = Vector2(123, 0)
+rotation = 1.5708
+scale = Vector2(0.5, 1)
+
+[node name="Wall8" parent="." instance=ExtResource("3_2lcba")]
+position = Vector2(-122, 2)
+rotation = 1.5708
+scale = Vector2(0.5, 1)

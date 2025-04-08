@@ -1,4 +1,5 @@
 extends Node
+class_name Room
 
 @export var grid_width: int
 @export var grid_height: int

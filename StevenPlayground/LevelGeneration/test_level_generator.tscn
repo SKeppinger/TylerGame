@@ -14,3 +14,4 @@ start_room = ExtResource("2_xm45f")
 boss_room = ExtResource("3_uhpf5")
 door = ExtResource("4_1mn0x")
 room_list = Array[PackedScene]([ExtResource("4_u26pa"), ExtResource("5_cmsqi"), ExtResource("6_373t1")])
+grid_offset = 16

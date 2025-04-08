@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh6ipvi4flh4b"]
+
+[ext_resource type="Script" uid="uid://7ssbe1k5a1pv" path="res://StevenPlayground/LevelGeneration/room.gd" id="1_4pj4p"]
+[ext_resource type="Texture2D" uid="uid://c4ubnkm1ygj7n" path="res://StevenPlayground/LevelGeneration/Tileset/corridor.png" id="2_1mqcf"]
+[ext_resource type="PackedScene" uid="uid://2tp28iegjagk" path="res://StevenPlayground/LevelGeneration/RoomComponents/wall.tscn" id="3_1mqcf"]
+
+[node name="Corridor" type="Node2D"]
+script = ExtResource("1_4pj4p")
+grid_width = 1
+grid_height = 1
+connections = Array[int]([1, 0, 1, 0])
+
+[node name="Corridor" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_1mqcf")
+
+[node name="Wall" parent="." instance=ExtResource("3_1mqcf")]
+position = Vector2(0, -126)
+
+[node name="Wall2" parent="." instance=ExtResource("3_1mqcf")]
+position = Vector2(0, 125)
+
+[node name="Wall3" parent="." instance=ExtResource("3_1mqcf")]
+position = Vector2(254, 1)
+rotation = 1.5708
+scale = Vector2(0.5, 1)
+
+[node name="Wall4" parent="." instance=ExtResource("3_1mqcf")]
+position = Vector2(-254, 0)
+rotation = 1.5708
+scale = Vector2(0.5, 1)

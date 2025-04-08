@@ -39,3 +39,5 @@ texture = ExtResource("2_73b27")
 [node name="GoblinScimitar" parent="." instance=ExtResource("6_ra6pu")]
 
 [node name="GoblinBow" parent="." instance=ExtResource("7_lp6wu")]
+
+[node name="Camera2D" type="Camera2D" parent="."]

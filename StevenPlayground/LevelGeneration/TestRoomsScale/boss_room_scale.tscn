@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpg4a7wejypou"]
+
+[ext_resource type="Script" uid="uid://7ssbe1k5a1pv" path="res://StevenPlayground/LevelGeneration/room.gd" id="1_541tq"]
+[ext_resource type="Texture2D" uid="uid://bhy6ih4iqthmo" path="res://StevenPlayground/LevelGeneration/Tileset/square_room.png" id="2_yehhm"]
+[ext_resource type="PackedScene" uid="uid://2tp28iegjagk" path="res://StevenPlayground/LevelGeneration/RoomComponents/wall.tscn" id="3_6mfru"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pdxad"]
+font_size = 96
+font_color = Color(0, 0, 0, 1)
+
+[node name="BossRoomScale" type="Node2D"]
+script = ExtResource("1_541tq")
+grid_width = 1
+grid_height = 1
+connections = Array[int]([1, 1, 1, 1])
+
+[node name="SquareRoom" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_yehhm")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -134.0
+offset_top = -63.0
+offset_right = 152.0
+offset_bottom = 69.0
+text = "BOSS"
+label_settings = SubResource("LabelSettings_pdxad")
+
+[node name="Wall" parent="." instance=ExtResource("3_6mfru")]
+position = Vector2(-1, -254)
+
+[node name="Wall2" parent="." instance=ExtResource("3_6mfru")]
+position = Vector2(0, 254)
+
+[node name="Wall3" parent="." instance=ExtResource("3_6mfru")]
+position = Vector2(254, -3)
+rotation = 1.5708
+
+[node name="Wall4" parent="." instance=ExtResource("3_6mfru")]
+position = Vector2(-254, -1)
+rotation = 1.5708

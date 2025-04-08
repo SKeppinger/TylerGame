@@ -1,0 +1,19 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1kd1hukm0mqr"]
+
+[ext_resource type="Script" uid="uid://c8r35gxmw0wnc" path="res://StevenPlayground/LevelGeneration/level_generator.gd" id="1_hfy5m"]
+[ext_resource type="PackedScene" uid="uid://cypknusmj5f" path="res://StevenPlayground/CombatPrototype/player.tscn" id="2_hfy5m"]
+[ext_resource type="PackedScene" uid="uid://cajj4im12068u" path="res://StevenPlayground/LevelGeneration/TestRoomsScale/start_room_scale.tscn" id="2_olbg2"]
+[ext_resource type="PackedScene" uid="uid://bpg4a7wejypou" path="res://StevenPlayground/LevelGeneration/TestRoomsScale/boss_room_scale.tscn" id="3_hfy5m"]
+[ext_resource type="PackedScene" uid="uid://ckv3yf8e0tua5" path="res://StevenPlayground/LevelGeneration/door.tscn" id="4_x71cb"]
+[ext_resource type="PackedScene" uid="uid://bh6ipvi4flh4b" path="res://StevenPlayground/LevelGeneration/TestRoomsScale/corridor_scale.tscn" id="5_bbaqt"]
+[ext_resource type="PackedScene" uid="uid://bvjfbfgt6paus" path="res://StevenPlayground/LevelGeneration/TestRoomsScale/pillar_room_scale.tscn" id="6_juhwu"]
+
+[node name="ScaleLevelGenerator" type="Node2D"]
+script = ExtResource("1_hfy5m")
+player = ExtResource("2_hfy5m")
+start_room = ExtResource("2_olbg2")
+boss_room = ExtResource("3_hfy5m")
+door = ExtResource("4_x71cb")
+room_list = Array[PackedScene]([ExtResource("5_bbaqt"), ExtResource("6_juhwu")])
+grid_box_size = 512
+grid_offset = 64

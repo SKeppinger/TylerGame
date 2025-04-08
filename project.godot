@@ -21,6 +21,7 @@ player=""
 enemy=""
 bone_pile=""
 door=""
+wall=""
 
 [input]
 

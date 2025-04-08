@@ -4,17 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://s4ol0ge6elj3" path="res://StevenPlayground/LevelGeneration/Tileset/temp_door.png" id="2_surwd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r45so"]
-size = Vector2(5, 10)
+size = Vector2(16, 56)
 
-[node name="Door" type="Node2D" groups=["door"]]
+[node name="Door" type="Area2D" groups=["door"]]
 script = ExtResource("1_0ewwf")
 
 [node name="TempDoor" type="Sprite2D" parent="."]
-position = Vector2(0, -2.38419e-07)
-scale = Vector2(0.0137209, 0.0133333)
+position = Vector2(-7.15256e-07, 1.19209e-06)
+scale = Vector2(0.0465116, 0.074)
 texture = ExtResource("2_surwd")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_r45so")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

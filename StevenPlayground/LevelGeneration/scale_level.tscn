@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://p1vnjawym02w"]
+
+[ext_resource type="PackedScene" uid="uid://d1kd1hukm0mqr" path="res://StevenPlayground/LevelGeneration/scale_level_generator.tscn" id="1_w1mwe"]
+
+[node name="ScaleLevel" type="Node2D"]
+
+[node name="ScaleLevelGenerator" parent="." instance=ExtResource("1_w1mwe")]
+origin = Vector2(600, 300)

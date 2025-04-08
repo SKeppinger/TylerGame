@@ -1,11 +1,13 @@
 extends Node
 
+@export var player: PackedScene # Player scene
 @export var start_room: PackedScene # The level's start room
 @export var boss_room: PackedScene # The level's boss room
 @export var door: PackedScene # The door scene (assumed to be facing right)
 @export var room_list: Array[PackedScene] # A list of other rooms that can populate the level
 @export var grid_box_size = 128 # The size (side length) of one grid box, in pixels
 @export var grid_size = 30 # The size (side length) of the entire grid, in boxes
+@export var grid_offset = 0 # The amount of empty space between grid spaces
 @export var origin: Vector2 # The actual position in the level scene around which to center the grid box
 @export var distance_to_boss = 4 # How many rooms between the start room and boss room
 @export var minimum_rooms = 8 # Minimum number of rooms in dungeon (provided it is possible)
@@ -23,6 +25,11 @@ func _ready():
 		for column in range(grid_size):
 			grid[row].append(null)
 	generate()
+	# Spawn the player
+	if player:
+		var player_instance = player.instantiate()
+		get_tree().root.add_child.call_deferred(player_instance)
+		player_instance.global_position = origin
 
 # Add room to grid[row][column]. If the room is bigger than 1x1, grid[row][column] will represent the top-rightmost grid space of the room.
 func add_room(row, column, room):
@@ -94,24 +101,41 @@ func add_door(room_position, door_number):
 	var door_instance = door.instantiate()
 	get_tree().root.add_child.call_deferred(door_instance)
 	var room = grid[room_position.x][room_position.y]
+	var to_room = null
+	var target_space = get_space_from_door(room_position.x, room_position.y, room, door_number)
+	if target_space and grid[target_space.x][target_space.y] is Vector2:
+		var location = grid[target_space.x][target_space.y]
+		to_room = grid[location.x][location.y]
+	else:
+		to_room = grid[target_space.x][target_space.y]
 	var door_position = room_position + get_grid_box_from_door(room, door_number)
 	var center = (grid_size / 2)
 	if grid_size % 2 == 0:
 		center -= 1
-	door_instance.global_position.x = (door_position.x * grid_box_size) - (center * grid_box_size) + origin.x
-	door_instance.global_position.y = (door_position.y * grid_box_size) - (center * grid_box_size) + origin.y
+	door_instance.global_position.x = (door_position.x * grid_box_size) - (center * grid_box_size) + origin.x + ((door_position.x - center) * grid_offset)
+	door_instance.global_position.y = (door_position.y * grid_box_size) - (center * grid_box_size) + origin.y + ((door_position.y - center) * grid_offset)
 	var door_direction = get_dir_from_door(room, door_number)
+	door_instance.orientation = door_direction
+	door_instance.grid_size = grid_box_size
 	match door_direction:
 		Vector2.RIGHT:
 			door_instance.global_position.x += grid_box_size / 2
+			door_instance.left_room = room
+			door_instance.right_room = to_room
 		Vector2.DOWN:
 			door_instance.rotation_degrees = 90
 			door_instance.global_position.y += grid_box_size / 2
+			door_instance.left_room = to_room
+			door_instance.right_room = room
 		Vector2.LEFT:
 			door_instance.global_position.x -= grid_box_size / 2
+			door_instance.left_room = to_room
+			door_instance.right_room = room
 		Vector2.UP:
 			door_instance.rotation_degrees = 90
 			door_instance.global_position.y -= grid_box_size / 2
+			door_instance.left_room = room
+			door_instance.right_room = to_room
 	door_positions.append(door_instance.global_position)
 	#TODO: This is temporary so I can see the doors
 	door_instance.z_index = 1
@@ -297,8 +321,8 @@ func generate():
 				if grid[row][col] and grid[row][col] is not Vector2:
 					var room = grid[row][col]
 					get_tree().root.add_child.call_deferred(room)
-					room.global_position.x = (row * grid_box_size) - (center * grid_box_size) + origin.x
-					room.global_position.y = (col * grid_box_size) - (center * grid_box_size) + origin.y
+					room.global_position.x = (row * grid_box_size) - (center * grid_box_size) + origin.x + ((row - center) * grid_offset)
+					room.global_position.y = (col * grid_box_size) - (center * grid_box_size) + origin.y + ((col - center) * grid_offset)
 		
 		# Add optional doors
 		add_optional_doors()
