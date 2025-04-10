@@ -139,6 +139,7 @@ func add_door(room_position, door_number):
 	door_positions.append(door_instance.global_position)
 	#TODO: This is temporary so I can see the doors
 	door_instance.z_index = 1
+	return door_instance
 
 # Add optional doors
 func add_optional_doors():
@@ -173,8 +174,10 @@ func add_optional_doors():
 											# Chance to add door
 											var rng = randf()
 											if rng <= extra_door_chance:
-												add_door(Vector2(row, col), junction)
-												add_door(target_room_pos, door_num)
+												var door1 = add_door(Vector2(row, col), junction)
+												var door2 = add_door(target_room_pos, door_num)
+												door1.partner = door2
+												door2.partner = door1
 												print("Optional door added!")
 
 # Check if a door exists in a certain position
@@ -246,8 +249,10 @@ func generate():
 								print("Path room placed at ", position.x, " ", position.y)
 								placed = true
 								# Add doors
-								add_door(position, junction)
-								add_door(Vector2(current_x, current_y), random_door)
+								var door1 = add_door(position, junction)
+								var door2 = add_door(Vector2(current_x, current_y), random_door)
+								door1.partner = door2
+								door2.partner = door1
 								current_x = position.x
 								current_y = position.y
 								path_list.append(Vector2(position.x, position.y))
@@ -299,8 +304,10 @@ func generate():
 						boss_room_position = position
 						placed = true
 						# Add doors
-						add_door(position, junction)
-						add_door(Vector2(current_x, current_y), random_door)
+						var door1 = add_door(position, junction)
+						var door2 = add_door(Vector2(current_x, current_y), random_door)
+						door1.partner = door2
+						door2.partner = door1
 						break
 					# If the room was not placed, continue searching through doors
 		# If the boss room was not placed, fail
@@ -366,8 +373,10 @@ func generate_offshoot(room_position, chance):
 							placed = true
 							placed_position = position
 							# Add doors
-							add_door(position, junction)
-							add_door(room_position, random_door)
+							var door1 = add_door(position, junction)
+							var door2 = add_door(room_position, random_door)
+							door1.partner = door2
+							door2.partner = door1
 							break
 						# If the room was not placed, continue searching through doors
 			# If none of the doors were able to connect, choose a different door
