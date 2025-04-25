@@ -1,0 +1,23 @@
+[gd_scene load_steps=12 format=3 uid="uid://bv20dh04kth84"]
+
+[ext_resource type="Script" uid="uid://c8r35gxmw0wnc" path="res://StevenPlayground/LevelGeneration/level_generator.gd" id="1_730jg"]
+[ext_resource type="PackedScene" uid="uid://cypknusmj5f" path="res://StevenPlayground/CombatPrototype/player.tscn" id="2_rx3mh"]
+[ext_resource type="PackedScene" uid="uid://blya3qrqofsm4" path="res://StevenPlayground/LevelGeneration/Level1/Rooms/start_room.tscn" id="3_n6kcm"]
+[ext_resource type="PackedScene" uid="uid://cdq3gptqptcqy" path="res://StevenPlayground/LevelGeneration/Level1/Rooms/boss_room.tscn" id="4_vnw8w"]
+[ext_resource type="PackedScene" uid="uid://ckv3yf8e0tua5" path="res://StevenPlayground/LevelGeneration/door.tscn" id="5_rg0j1"]
+[ext_resource type="PackedScene" uid="uid://dmerj7vtsgj0o" path="res://StevenPlayground/LevelGeneration/Level1/Rooms/cave.tscn" id="6_4tx45"]
+[ext_resource type="PackedScene" uid="uid://j4vrbavfprib" path="res://StevenPlayground/LevelGeneration/Level1/Rooms/hallway.tscn" id="7_gg54x"]
+[ext_resource type="PackedScene" uid="uid://calg85e80nk1p" path="res://StevenPlayground/LevelGeneration/Level1/Rooms/library.tscn" id="8_dhkoe"]
+[ext_resource type="PackedScene" uid="uid://cp5s6qfkb3aag" path="res://StevenPlayground/LevelGeneration/Level1/Rooms/square_room.tscn" id="9_c0ygy"]
+[ext_resource type="PackedScene" uid="uid://6f3120tbwh3r" path="res://StevenPlayground/LevelGeneration/Level1/Rooms/well.tscn" id="10_sv2dx"]
+[ext_resource type="PackedScene" uid="uid://b0afmpgya16ol" path="res://StevenPlayground/LevelGeneration/Level1/Rooms/vertical_hallway.tscn" id="11_rx3mh"]
+
+[node name="Level1Generator" type="Node2D"]
+script = ExtResource("1_730jg")
+player = ExtResource("2_rx3mh")
+start_room = ExtResource("3_n6kcm")
+boss_room = ExtResource("4_vnw8w")
+door = ExtResource("5_rg0j1")
+room_list = Array[PackedScene]([ExtResource("6_4tx45"), ExtResource("7_gg54x"), ExtResource("8_dhkoe"), ExtResource("9_c0ygy"), ExtResource("10_sv2dx"), ExtResource("11_rx3mh")])
+grid_box_size = 512
+grid_size = 50

@@ -12,3 +12,4 @@ class_name Room
 ## topright, bottomright, bottomdown, bottomleft, topleft, topup
 ## I hope this makes sense.
 @export var connections: Array[int]
+@export var dead_end: bool

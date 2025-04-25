@@ -24,7 +24,17 @@ func _ready():
 		grid.append([])
 		for column in range(grid_size):
 			grid[row].append(null)
-	generate()
+	# Keep attempting to generate until a correct level is generated
+	while generate() == -1:
+		grid = []
+		room_count = 0
+		door_positions = []
+		for row in range(grid_size):
+			grid.append([])
+			for column in range(grid_size):
+				grid[row].append(null)
+		for node in get_tree().get_nodes_in_group("door"):
+			node.queue_free()
 	# Spawn the player
 	if player:
 		var player_instance = player.instantiate()
@@ -229,9 +239,15 @@ func generate():
 					var door_space = get_space_from_door(current_x, current_y, current_room, junction)
 					if grid[door_space.x][door_space.y] == null:
 						possible_doors.append(junction)
+			if len(possible_doors) == 0:
+				print("Path to boss room failed")
+				return -1
 			var placed = false
 			# Generate a random room and a random door
 			var random_room = possible_rooms[randi_range(0, len(possible_rooms) - 1)]
+			# Don't put a dead end on the path
+			while random_room.instantiate().dead_end:
+				random_room = possible_rooms[randi_range(0, len(possible_rooms) - 1)]
 			var random_door = possible_doors[randi_range(0, len(possible_doors) - 1)]
 			while not placed:
 				var target_space = get_space_from_door(current_x, current_y, current_room, random_door)
@@ -272,7 +288,7 @@ func generate():
 						# If there are no more rooms, fail
 						if len(possible_rooms) == 0:
 							print("Failed to generate path to boss room")
-							return
+							return -1
 						else:
 							random_room = possible_rooms[randi_range(0, len(possible_rooms) - 1)]
 							random_door = possible_doors[randi_range(0, len(possible_doors) - 1)]
@@ -287,6 +303,9 @@ func generate():
 				var door_space = get_space_from_door(current_x, current_y, last_path, junction)
 				if grid[door_space.x][door_space.y] == null:
 					possible_doors.append(junction)
+		if len(possible_doors) == 0:
+			print("Failed to place boss room")
+			return -1
 		var random_door = possible_doors[randi_range(0, len(possible_doors) - 1)]
 		var target_space = get_space_from_door(current_x, current_y, last_path, random_door)
 		var target_direction = get_dir_from_door(last_path, random_door)
@@ -313,7 +332,7 @@ func generate():
 		# If the boss room was not placed, fail
 		if not placed:
 			print("Failed to place boss room")
-			return
+			return -1
 
 		# Create offshoots
 		# Start room
@@ -335,6 +354,8 @@ func generate():
 		add_optional_doors()
 	else:
 		print("Error creating start room.")
+		return -1
+	return 0
 
 # Generate an offshoot recursively, with a decreasing chance to continue the offshoot
 func generate_offshoot(room_position, chance):
@@ -348,7 +369,7 @@ func generate_offshoot(room_position, chance):
 				var door_space = get_space_from_door(room_position.x, room_position.y, origin_room, junction)
 				if grid[door_space.x][door_space.y] == null:
 					possible_doors.append(junction)
-		if len(possible_doors) == 0:
+		if len(possible_doors) == 0 or len(possible_rooms) == 0:
 			print("Failed to generate offshoot (non-lethal error)")
 			return
 		var placed = false

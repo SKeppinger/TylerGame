@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://calg85e80nk1p"]
+
+[ext_resource type="Texture2D" uid="uid://bvggvtfoigvio" path="res://StevenPlayground/LevelGeneration/Tileset/Level1Temp/library.png" id="1_0mk70"]
+[ext_resource type="Script" uid="uid://7ssbe1k5a1pv" path="res://StevenPlayground/LevelGeneration/room.gd" id="1_iqymn"]
+[ext_resource type="PackedScene" uid="uid://2tp28iegjagk" path="res://StevenPlayground/LevelGeneration/RoomComponents/wall.tscn" id="2_iqymn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqymn"]
+size = Vector2(125, 356)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbpes"]
+size = Vector2(148, 672)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwwjn"]
+size = Vector2(128, 649.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04cnu"]
+size = Vector2(361, 125)
+
+[node name="Library" type="Node2D"]
+script = ExtResource("1_iqymn")
+grid_width = 3
+grid_height = 2
+connections = Array[int]([1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-768, 512)
+texture = ExtResource("1_0mk70")
+
+[node name="Wall" parent="." instance=ExtResource("2_iqymn")]
+position = Vector2(-768, 0)
+scale = Vector2(3, 1)
+
+[node name="Wall2" parent="." instance=ExtResource("2_iqymn")]
+position = Vector2(-768, 1024)
+scale = Vector2(3, 1)
+
+[node name="Wall3" parent="." instance=ExtResource("2_iqymn")]
+position = Vector2(0, 512)
+rotation = 1.5708
+scale = Vector2(2, 1)
+
+[node name="Wall4" parent="." instance=ExtResource("2_iqymn")]
+position = Vector2(-1536, 512)
+rotation = 1.5708
+scale = Vector2(2, 1)
+
+[node name="Bookshelf" type="StaticBody2D" parent="." groups=["wall"]]
+position = Vector2(-768, 512)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelf"]
+position = Vector2(-65.5, -181)
+shape = SubResource("RectangleShape2D_iqymn")
+
+[node name="Bookshelf2" type="StaticBody2D" parent="." groups=["wall"]]
+position = Vector2(-768, 512)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelf2"]
+position = Vector2(363, -35)
+shape = SubResource("RectangleShape2D_bbpes")
+
+[node name="Bookshelf3" type="StaticBody2D" parent="." groups=["wall"]]
+position = Vector2(-768, 512)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelf3"]
+position = Vector2(-456, -44.75)
+shape = SubResource("RectangleShape2D_uwwjn")
+
+[node name="Bookshelf4" type="StaticBody2D" parent="." groups=["wall"]]
+position = Vector2(-768, 512)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelf4"]
+position = Vector2(-234.5, 217.5)
+shape = SubResource("RectangleShape2D_04cnu")

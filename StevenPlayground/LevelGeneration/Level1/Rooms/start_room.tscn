@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://blya3qrqofsm4"]
+
+[ext_resource type="Texture2D" uid="uid://bbug810kpsjkh" path="res://StevenPlayground/LevelGeneration/Tileset/Level1Temp/start_room.png" id="1_hvvv3"]
+[ext_resource type="Script" uid="uid://7ssbe1k5a1pv" path="res://StevenPlayground/LevelGeneration/room.gd" id="1_qh5rv"]
+[ext_resource type="PackedScene" uid="uid://2tp28iegjagk" path="res://StevenPlayground/LevelGeneration/RoomComponents/wall.tscn" id="2_qh5rv"]
+
+[node name="StartRoom" type="Node2D"]
+script = ExtResource("1_qh5rv")
+grid_width = 2
+grid_height = 2
+connections = Array[int]([1, 1, 1, 1, 1, 1, 1, 1])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-512, 512)
+texture = ExtResource("1_hvvv3")
+
+[node name="Wall" parent="." instance=ExtResource("2_qh5rv")]
+position = Vector2(-512, 0)
+scale = Vector2(2, 1)
+
+[node name="Wall2" parent="." instance=ExtResource("2_qh5rv")]
+position = Vector2(-512, 1024)
+scale = Vector2(2, 1)
+
+[node name="Wall3" parent="." instance=ExtResource("2_qh5rv")]
+position = Vector2(0, 512)
+rotation = 1.5708
+scale = Vector2(2, 1)
+
+[node name="Wall4" parent="." instance=ExtResource("2_qh5rv")]
+position = Vector2(-1024, 512)
+rotation = 1.5708
+scale = Vector2(2, 1)

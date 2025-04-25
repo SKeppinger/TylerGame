@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh0bh5ctrcu73"]
+
+[ext_resource type="PackedScene" uid="uid://bv20dh04kth84" path="res://StevenPlayground/LevelGeneration/Level1/level1_generator.tscn" id="1_eie5r"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Level1Generator" parent="." instance=ExtResource("1_eie5r")]

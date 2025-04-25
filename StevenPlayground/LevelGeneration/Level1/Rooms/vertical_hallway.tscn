@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0afmpgya16ol"]
+
+[ext_resource type="Script" uid="uid://7ssbe1k5a1pv" path="res://StevenPlayground/LevelGeneration/room.gd" id="1_28rgj"]
+[ext_resource type="Texture2D" uid="uid://caybb7ouusww2" path="res://StevenPlayground/LevelGeneration/Tileset/Level1Temp/hallway.png" id="2_oord4"]
+[ext_resource type="PackedScene" uid="uid://2tp28iegjagk" path="res://StevenPlayground/LevelGeneration/RoomComponents/wall.tscn" id="3_etvha"]
+
+[node name="VerticalHallway" type="Node2D"]
+script = ExtResource("1_28rgj")
+grid_width = 1
+grid_height = 2
+connections = Array[int]([0, 0, 1, 0, 0, 1])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-256, 512)
+rotation = 1.5708
+texture = ExtResource("2_oord4")
+
+[node name="Wall" parent="." instance=ExtResource("3_etvha")]
+position = Vector2(-512, 512)
+rotation = 1.5708
+scale = Vector2(2, 1)
+
+[node name="Wall2" parent="." instance=ExtResource("3_etvha")]
+position = Vector2(0, 512)
+rotation = 1.5708
+scale = Vector2(2, 1)
+
+[node name="Wall3" parent="." instance=ExtResource("3_etvha")]
+position = Vector2(-256, 0)
+
+[node name="Wall4" parent="." instance=ExtResource("3_etvha")]
+position = Vector2(-256, 1024)

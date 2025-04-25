@@ -6,7 +6,7 @@ class_name Door
 @export var partner: Door # The corresponding door
 @export var grid_size: int # How big the grid boxes are
 @export var orientation = Vector2.RIGHT # Which way the door is facing
-@export var offset = 64 # How far from the center of the door to teleport the player
+@export var offset = 48 # How far from the center of the door to teleport the player
 
 # Transport the player when they enter
 func _on_body_entered(body):
