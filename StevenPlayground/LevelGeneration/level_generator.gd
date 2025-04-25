@@ -378,7 +378,6 @@ func generate_offshoot(room_position, chance):
 		var placed_position
 		# Generate a random room and a random door
 		var random_room = possible_rooms[randi_range(0, len(possible_rooms) - 1)]
-		print(random_room.instantiate().dead_end)
 		var random_door = possible_doors[randi_range(0, len(possible_doors) - 1)]
 		while not placed:
 			var target_space = get_space_from_door(room_position.x, room_position.y, origin_room, random_door)
@@ -422,7 +421,6 @@ func generate_offshoot(room_position, chance):
 						return
 					else:
 						random_room = possible_rooms[randi_range(0, len(possible_rooms) - 1)]
-						print(random_room.instantiate().dead_end)
 						random_door = possible_doors[randi_range(0, len(possible_doors) - 1)]
 				else:
 					random_door = possible_doors[randi_range(0, len(possible_doors) - 1)]

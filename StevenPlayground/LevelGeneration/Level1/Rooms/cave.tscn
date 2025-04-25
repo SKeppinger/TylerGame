@@ -8,7 +8,6 @@ script = ExtResource("1_8100g")
 grid_width = 7
 grid_height = 5
 connections = Array[int]([0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0])
-dead_end = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1400, 1000)

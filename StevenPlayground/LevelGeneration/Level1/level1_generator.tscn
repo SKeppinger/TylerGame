@@ -20,4 +20,4 @@ boss_room = ExtResource("4_vnw8w")
 door = ExtResource("5_rg0j1")
 room_list = Array[PackedScene]([ExtResource("9_c0ygy"), ExtResource("10_sv2dx"), ExtResource("11_rx3mh"), ExtResource("6_4tx45"), ExtResource("7_gg54x"), ExtResource("8_dhkoe")])
 grid_box_size = 400
-grid_size = 50
+grid_size = 100
