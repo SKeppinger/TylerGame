@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bh6ipvi4flh4b"]
 
 [ext_resource type="Script" uid="uid://7ssbe1k5a1pv" path="res://StevenPlayground/LevelGeneration/room.gd" id="1_4pj4p"]
-[ext_resource type="Texture2D" uid="uid://c4ubnkm1ygj7n" path="res://StevenPlayground/LevelGeneration/Tileset/corridor.png" id="2_1mqcf"]
+[ext_resource type="Texture2D" uid="uid://c4ubnkm1ygj7n" path="res://StevenPlayground/LevelGeneration/Tileset/TestRooms/corridor.png" id="2_1mqcf"]
 [ext_resource type="PackedScene" uid="uid://2tp28iegjagk" path="res://StevenPlayground/LevelGeneration/RoomComponents/wall.tscn" id="3_1mqcf"]
 
 [node name="Corridor" type="Node2D"]

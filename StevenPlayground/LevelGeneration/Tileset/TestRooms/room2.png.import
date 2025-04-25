@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4ubnkm1ygj7n"
-path="res://.godot/imported/corridor.png-9927e7d21145a40a1ecf3a89de35b657.ctex"
+uid="uid://l24r2ibusbf3"
+path="res://.godot/imported/room2.png-77ad9f5dbabfb5bed63ea9dc568db777.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://StevenPlayground/LevelGeneration/Tileset/corridor.png"
-dest_files=["res://.godot/imported/corridor.png-9927e7d21145a40a1ecf3a89de35b657.ctex"]
+source_file="res://StevenPlayground/LevelGeneration/Tileset/TestRooms/room2.png"
+dest_files=["res://.godot/imported/room2.png-77ad9f5dbabfb5bed63ea9dc568db777.ctex"]
 
 [params]
 

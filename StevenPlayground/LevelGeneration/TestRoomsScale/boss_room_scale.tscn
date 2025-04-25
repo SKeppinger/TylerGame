@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bpg4a7wejypou"]
 
 [ext_resource type="Script" uid="uid://7ssbe1k5a1pv" path="res://StevenPlayground/LevelGeneration/room.gd" id="1_541tq"]
-[ext_resource type="Texture2D" uid="uid://bhy6ih4iqthmo" path="res://StevenPlayground/LevelGeneration/Tileset/square_room.png" id="2_yehhm"]
+[ext_resource type="Texture2D" uid="uid://bhy6ih4iqthmo" path="res://StevenPlayground/LevelGeneration/Tileset/TestRooms/square_room.png" id="2_yehhm"]
 [ext_resource type="PackedScene" uid="uid://2tp28iegjagk" path="res://StevenPlayground/LevelGeneration/RoomComponents/wall.tscn" id="3_6mfru"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pdxad"]

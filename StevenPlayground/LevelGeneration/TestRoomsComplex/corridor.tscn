@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ctolbbrbx6puv"]
 
 [ext_resource type="Script" uid="uid://7ssbe1k5a1pv" path="res://StevenPlayground/LevelGeneration/room.gd" id="1_kdmru"]
-[ext_resource type="Texture2D" uid="uid://c4ubnkm1ygj7n" path="res://StevenPlayground/LevelGeneration/Tileset/corridor.png" id="2_xxg06"]
+[ext_resource type="Texture2D" uid="uid://c4ubnkm1ygj7n" path="res://StevenPlayground/LevelGeneration/Tileset/TestRooms/corridor.png" id="2_xxg06"]
 
 [node name="Corridor" type="Node2D"]
 script = ExtResource("1_kdmru")

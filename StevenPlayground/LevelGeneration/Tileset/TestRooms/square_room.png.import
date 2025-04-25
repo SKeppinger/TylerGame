@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cspop4g4xrtw7"
-path="res://.godot/imported/room1.png-4ad2fa6133df30e1c285a5e039c4565f.ctex"
+uid="uid://bhy6ih4iqthmo"
+path="res://.godot/imported/square_room.png-1c0be03bebdd90fea9ddc2f9d7972bb8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://StevenPlayground/LevelGeneration/Tileset/room1.png"
-dest_files=["res://.godot/imported/room1.png-4ad2fa6133df30e1c285a5e039c4565f.ctex"]
+source_file="res://StevenPlayground/LevelGeneration/Tileset/TestRooms/square_room.png"
+dest_files=["res://.godot/imported/square_room.png-1c0be03bebdd90fea9ddc2f9d7972bb8.ctex"]
 
 [params]
 
