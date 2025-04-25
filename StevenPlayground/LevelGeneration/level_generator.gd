@@ -148,7 +148,9 @@ func add_door(room_position, door_number):
 			door_instance.right_room = to_room
 	door_positions.append(door_instance.global_position)
 	#TODO: This is temporary so I can see the doors
-	door_instance.z_index = 1
+	#door_instance.z_index = 1
+	#TODO: THIS IS TEMPORARY SO I DONT SEE THE DOORS LMAO
+	door_instance.set_visible(false)
 	return door_instance
 
 # Add optional doors
@@ -376,6 +378,7 @@ func generate_offshoot(room_position, chance):
 		var placed_position
 		# Generate a random room and a random door
 		var random_room = possible_rooms[randi_range(0, len(possible_rooms) - 1)]
+		print(random_room.instantiate().dead_end)
 		var random_door = possible_doors[randi_range(0, len(possible_doors) - 1)]
 		while not placed:
 			var target_space = get_space_from_door(room_position.x, room_position.y, origin_room, random_door)
@@ -390,7 +393,7 @@ func generate_offshoot(room_position, chance):
 						var position = target_space - relative_grid
 						# Attempt to place the room
 						if add_room(position.x, position.y, random_room):
-							print("Offshoot room placed at ", position.x, " ", position.y)
+							print("Offshoot room placed at ", position.x, " ", position.y, " from ", room_position.x, " ", room_position.y)
 							placed = true
 							placed_position = position
 							# Add doors
@@ -408,7 +411,9 @@ func generate_offshoot(room_position, chance):
 					# Add all doors back
 					for junction in range(len(origin_room.connections)):
 						if origin_room.connections[junction] == 1:
-							possible_doors.append(junction)
+							var door_space = get_space_from_door(room_position.x, room_position.y, origin_room, junction)
+							if grid[door_space.x][door_space.y] == null:
+								possible_doors.append(junction)
 					# Choose a different room and door
 					possible_rooms.remove_at(possible_rooms.find(random_room))
 					# If there are no more rooms, fail
@@ -417,6 +422,7 @@ func generate_offshoot(room_position, chance):
 						return
 					else:
 						random_room = possible_rooms[randi_range(0, len(possible_rooms) - 1)]
+						print(random_room.instantiate().dead_end)
 						random_door = possible_doors[randi_range(0, len(possible_doors) - 1)]
 				else:
 					random_door = possible_doors[randi_range(0, len(possible_doors) - 1)]

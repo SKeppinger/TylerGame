@@ -1,47 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://6f3120tbwh3r"]
+[gd_scene load_steps=3 format=3 uid="uid://6f3120tbwh3r"]
 
 [ext_resource type="Script" uid="uid://7ssbe1k5a1pv" path="res://StevenPlayground/LevelGeneration/room.gd" id="1_78ok5"]
 [ext_resource type="Texture2D" uid="uid://ivoddjm24efw" path="res://StevenPlayground/LevelGeneration/Tileset/Level1Temp/well.png" id="1_lgjsm"]
-[ext_resource type="PackedScene" uid="uid://2tp28iegjagk" path="res://StevenPlayground/LevelGeneration/RoomComponents/wall.tscn" id="2_78ok5"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_78ok5"]
-radius = 159.113
 
 [node name="Well" type="Node2D"]
 script = ExtResource("1_78ok5")
-grid_width = 2
-grid_height = 2
-connections = Array[int]([0, 0, 1, 1, 0, 0, 0, 0])
+grid_width = 5
+grid_height = 5
+connections = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0])
 dead_end = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-512, 512)
+position = Vector2(-1000, 1000)
 texture = ExtResource("1_lgjsm")
-
-[node name="Wall2" parent="." instance=ExtResource("2_78ok5")]
-position = Vector2(-512, 1024)
-scale = Vector2(1.6, 1)
-
-[node name="Wall3" parent="." instance=ExtResource("2_78ok5")]
-position = Vector2(-122, 928)
-rotation = 1.5708
-scale = Vector2(0.4, 1)
-
-[node name="Wall4" parent="." instance=ExtResource("2_78ok5")]
-position = Vector2(-905, 923)
-rotation = 1.5708
-scale = Vector2(0.4, 1)
-
-[node name="Well" type="StaticBody2D" parent="." groups=["wall"]]
-position = Vector2(-512, 512)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Well"]
-position = Vector2(0, -15)
-shape = SubResource("CircleShape2D_78ok5")
-
-[node name="Wall" type="StaticBody2D" parent="." groups=["wall"]]
-position = Vector2(-512, 512)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall"]
-build_mode = 1
-polygon = PackedVector2Array(-391, 310, -458, 208, -494, 95, -501, -34, -491, -113, -452, -222, -372, -337, -268, -426, -161, -477, -49, -503, 32, -502, 144, -483, 252, -434, 317, -391, 379, -329, 436, -252, 474, -162, 498, -68, 500, 19, 490, 118, 466, 189, 428, 258, 389, 315, 452, 207, 495, 86, 497, -60, 453, -203, 392, -313, 281, -417, 143, -480, -4, -499, -122, -486, -224, -439, -317, -381, -423, -271, -485, -131, -503, 23, -470, 178)

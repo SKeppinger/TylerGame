@@ -1,85 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmerj7vtsgj0o"]
+[gd_scene load_steps=3 format=3 uid="uid://dmerj7vtsgj0o"]
 
 [ext_resource type="Script" uid="uid://7ssbe1k5a1pv" path="res://StevenPlayground/LevelGeneration/room.gd" id="1_8100g"]
-[ext_resource type="PackedScene" uid="uid://2tp28iegjagk" path="res://StevenPlayground/LevelGeneration/RoomComponents/wall.tscn" id="2_8100g"]
 [ext_resource type="Texture2D" uid="uid://cba1g2ld4ul4f" path="res://StevenPlayground/LevelGeneration/Tileset/Level1Temp/cave.png" id="2_uiveu"]
 
 [node name="Cave" type="Node2D"]
 script = ExtResource("1_8100g")
-grid_width = 4
-grid_height = 3
-connections = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0])
+grid_width = 7
+grid_height = 5
+connections = Array[int]([0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0])
 dead_end = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1024, 768)
+position = Vector2(-1400, 1000)
 texture = ExtResource("2_uiveu")
-
-[node name="Wall" parent="." instance=ExtResource("2_8100g")]
-position = Vector2(-827, -494)
-scale = Vector2(0.9, 1)
-
-[node name="Wall2" parent="." instance=ExtResource("2_8100g")]
-position = Vector2(-828, 465)
-scale = Vector2(0.9, 1)
-
-[node name="Wall3" parent="." instance=ExtResource("2_8100g")]
-position = Vector2(1021, -277)
-rotation = 1.5708
-scale = Vector2(0.9, 1)
-
-[node name="Wall4" parent="." instance=ExtResource("2_8100g")]
-position = Vector2(-1024, 0)
-rotation = 1.5708
-scale = Vector2(2, 1)
-
-[node name="Wall5" parent="." instance=ExtResource("2_8100g")]
-position = Vector2(1022, 247)
-rotation = 1.5708
-scale = Vector2(0.9, 1)
-
-[node name="Wall6" parent="." instance=ExtResource("2_8100g")]
-position = Vector2(996, 8.99991)
-rotation = 0.785398
-scale = Vector2(0.15, 1)
-
-[node name="Wall7" parent="." instance=ExtResource("2_8100g")]
-position = Vector2(998, -37)
-rotation = 2.44346
-scale = Vector2(0.15, 1)
-
-[node name="Wall8" parent="." instance=ExtResource("2_8100g")]
-position = Vector2(741, -494)
-scale = Vector2(1.15, 1)
-
-[node name="Wall9" parent="." instance=ExtResource("2_8100g")]
-position = Vector2(744, 466)
-scale = Vector2(1.15, 1)
-
-[node name="Wall10" parent="." instance=ExtResource("2_8100g")]
-position = Vector2(-75, -765)
-scale = Vector2(0.9, 1)
-
-[node name="Wall11" parent="." instance=ExtResource("2_8100g")]
-position = Vector2(283, -643)
-rotation = 0.740362
-scale = Vector2(0.9, 1)
-
-[node name="Wall12" parent="." instance=ExtResource("2_8100g")]
-position = Vector2(-432, -647)
-rotation = 2.39614
-scale = Vector2(0.9, 1)
-
-[node name="Wall13" parent="." instance=ExtResource("2_8100g")]
-position = Vector2(-73.0001, 763)
-scale = Vector2(0.9, 1)
-
-[node name="Wall14" parent="." instance=ExtResource("2_8100g")]
-position = Vector2(-431, 620)
-rotation = 0.740362
-scale = Vector2(0.9, 1)
-
-[node name="Wall15" parent="." instance=ExtResource("2_8100g")]
-position = Vector2(283, 620)
-rotation = 2.39614
-scale = Vector2(0.9, 1)

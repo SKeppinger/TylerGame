@@ -41,4 +41,4 @@ texture = ExtResource("2_73b27")
 [node name="GoblinBow" parent="." instance=ExtResource("7_lp6wu")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.1, 0.1)
+zoom = Vector2(0.05, 0.05)
